@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <div id="bounds">
+        <div id="osc_container" class="big_container">
+            <div class="key_container ver">
+                <div id="sin" class="keys key_osc">
+                    <button class="button button_osc sin"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+                <div id="square" class="keys key_osc">
+                    <button class="button button_osc square"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+                <div id="saw" class="keys key_osc">
+                    <button class="button button_osc saw"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+                <div id="triang" class="keys key_osc">
+                    <button class="button button_osc triangle"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+            </div>
+            <div class="key_container ver">
+            </div>
+            <div class="key_container ver">
+                <div id="lpf" class="keys key_filter black">
+                    <button class="button button_filter lpf"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+                <div id="hpf" class="keys key_filter black">
+                    <button class="button button_filter hpf"></button>
+                </div>
+            </div>
+            <div class="key_container ver">
+                <div id="bpf" class="keys key_filter black">
+                    <button class="button button_filter bpf"></button>
+                </div>
+            </div>
+        </div>
+        <div id="eff_container" class="big_container">
+            <div class="key_container hor">
+                <div id="distort" class="keys key_effect">
+                    <button class="button button_effect distort"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="skull" class="keys key_effect">
+                    <button class="button button_effect skull"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="tremolo" class="keys key_effect">
+                    <button class="button button_effect tremolo"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="flanger" class="keys key_effect">
+                    <button class="button button_effect flanger"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="vibrato" class="keys key_effect">
+                    <button class="button button_effect vibrato"></button>
+                </div>
+            </div>
+
+        </div>
+        <div id="workspace">
+            <div id="dest_cont" class="key_container"></div>
+            <div id="adsr_cont" class="big_container">
+            </div>
+            <div id="main_out_node">
+                <div id="main_out" class="connection"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>
