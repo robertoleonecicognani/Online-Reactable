@@ -1,3 +1,5 @@
+//js script
+
 const endCont = document.getElementById("dest_cont");
 
 
