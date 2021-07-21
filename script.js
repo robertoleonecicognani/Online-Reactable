@@ -1,5 +1,7 @@
 //js script
 
+const pureknob = require('./pureknob')
+
 const endCont = document.getElementById("dest_cont");
 
 
@@ -11,6 +13,7 @@ const main_out = document.getElementById("main_out");
 const main_out_node = document.getElementById('main_out_node');
 input_assignment(main_out);
 main_out_node.classList.add('node');
+
 
 nodes = document.querySelectorAll('.node');
 num_nodes = nodes.length;
@@ -338,3 +341,4 @@ function new_knob(elem, side) {
   elem.appendChild(node);
   return knob;
 }
+
