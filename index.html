@@ -7,6 +7,8 @@
 </head>
 <body>
     <div id="bounds">
+
+
         <div id="osc_container" class="big_container">
             <div class="key_container ver">
                 <div id="sin" class="keys key_osc">
@@ -55,13 +57,24 @@
                 </div>
             </div>
             <div class="key_container hor">
-                <div id="skull" class="keys key_effect">
-                    <button class="button button_effect skull"></button>
+                <div id="phaser" class="keys key_effect">
+                    <button class="button button_effect phaser"></button>
                 </div>
+
             </div>
             <div class="key_container hor">
                 <div id="tremolo" class="keys key_effect">
                     <button class="button button_effect tremolo"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="reverb" class="keys key_effect">
+                    <button class="button button_effect reverb"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="chorus" class="keys key_effect">
+                    <button class="button button_effect chorus"></button>
                 </div>
             </div>
             <div class="key_container hor">
@@ -70,25 +83,93 @@
                 </div>
             </div>
             <div class="key_container hor">
+                <div id="bitcrusher" class="keys key_effect">
+                    <button class="button button_effect bitcrusher"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="cheb" class="keys key_effect">
+                    <button class="button button_effect cheb"></button>
+                </div>
+
+            </div>
+            <div class="key_container hor">
+                <div id="wah" class="keys key_effect">
+                    <button class="button button_effect wah"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="panner" class="keys key_effect">
+                    <button class="button button_effect panner"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="pingpongdelay" class="keys key_effect">
+                    <button class="button button_effect pingpongdelay"></button>
+                </div>
+
+            </div>
+            <div class="key_container hor">
+                <div id="pitchshift" class="keys key_effect">
+                    <button class="button button_effect pitchshift"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="auto-filter" class="keys key_effect">
+                    <button class="button button_effect auto-filter"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
                 <div id="vibrato" class="keys key_effect">
                     <button class="button button_effect vibrato"></button>
                 </div>
+            </div>
+            <div class="key_container hor">
+                <div id="duosynth" class="keys key_effect">
+                    <button class="button button_effect duosynth"></button>
+                </div>
+
+            </div>
+            <div class="key_container hor">
+                <div id="fatsynth" class="keys key_effect">
+                    <button class="button button_effect fatsynth"></button>
+                </div>
+            </div>
+            <div class="key_container hor">
+                <div id="noise" class="keys key_effect">
+                    <button class="button button_effect noise"></button>
+                </div>
+
+            </div>
+            <div class="key_container hor">
+                <div id="freqenv" class="keys key_effect">
+                    <button class="button button_effect freqenv"></button>
+                </div>
+
             </div>
 
         </div>
         <div id="workspace">
             <div id="dest_cont" class="key_container"></div>
             <div id="adsr_cont" class="big_container">
-            </div>
-            <div id="main_out_node">
-                <div id="main_out" class="connection"></div>
+                <div class="key_container ver">
+                    <canvas id=myCanvas height=300 width=500></canvas>
+                    <div class="key_container ver">
+                        <input id=attackRange type=range min="0" max="2" step="0.05" value="1.0">
+                        <input id=decayRange type=range min="0" max="2" step="0.05" value="1.0">
+                        <input id=sustainRange type=range min="0" max="1" step="0.05" value="0.5">
+                        <input id=releaseRange type=range min="0" max="3" step="0.05" value="1.5">
+                    </div>
+                </div>
             </div>
         </div>
+        <div id="main_out_node">
+            <div id="main_out" class="connection"></div>
+        </div>
     </div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./pureknob.js" type="text/javascript"></script>
-    
+
 </body>
 </html>

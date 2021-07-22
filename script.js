@@ -3,15 +3,19 @@ import * as Tone from 'tone'
 const pureknob = require('./pureknob')
 
 
-var fat_spread = 40; //fatsynth
 
+
+
+
+var fat_spread = 40; //fatsynth
+console.log(44444)
 var env = {
     attack: 0,
     decay: 0.1,
     sustain: 0.1,
     release: 1
 };
-tremolo = new Tone.Tremolo(9, 0.75).start(); //doesnt work with fx class not sure why
+//tremolo = new Tone.Tremolo(9, 0.75).start(); //doesnt work with fx class not sure why
 var flag = 0;
 var frequency = 440;
 var oscillators = []; //create a list that stores all the oscillators
@@ -79,7 +83,8 @@ class fx_oscillator {
             options: { distortion: 1, wet: 1 }, // effect initial options
             bypass: false // initial bypass value
         });
-        this.fx2 = new FX({ effect: Tone.Phaser, bypass: true });
+        this.fx2 = new Tone.Phaser();
+
         this.fx3 = new FX({
             effect: Tone.Vibrato,
             options: { frequency: 5, depth: 0.3, wet: 1 },
@@ -87,7 +92,7 @@ class fx_oscillator {
         });
         this.fx4 = new FX({
             effect: Tone.Reverb,
-            options: { decay: 1.5 },
+            options: { decay: 2 },
             bypass: false
         });
         this.fx5 = new FX({
@@ -102,7 +107,7 @@ class fx_oscillator {
         });
         this.fx7 = new FX({
             effect: Tone.Chebyshev,
-            options: { order: 2, wet: 1 },
+            options: { order: 30, wet: 1 },
             bypass: false
         });
         this.fx8 = new FX({
@@ -558,6 +563,8 @@ function check_if_null(num) {
 var masterflag = 0;
 
 function choose_fx(i) {
+
+    //console.log(nodes[i]);
     switch (i) {
         case 0:
             return current_oscillator.osc;
@@ -581,10 +588,36 @@ function choose_fx(i) {
             return tremolo;
         //return current_oscillator.fx18;//doesnt work with fx?
         case 10:
-            return current_oscillator.fx17;
+            return current_oscillator.fx4;
         case 11:
-            return current_oscillator.fx3;
+            return current_oscillator.fx5;
         case 12:
+            return current_oscillator.fx17;
+        case 13:
+            return current_oscillator.fx6;
+        case 14:
+            return current_oscillator.fx7;
+        case 15:
+            return current_oscillator.fx8;
+        case 16:
+            return current_oscillator.fx9;
+        case 17:
+            return current_oscillator.fx10;
+        case 18:
+            return current_oscillator.fx11;
+        case 19:
+            return current_oscillator.fx12;
+        case 20:
+            return current_oscillator.fx16;
+        case 21:
+            return current_oscillator;
+        case 22:
+            return current_oscillator;
+        case 23:
+            return current_oscillator;
+        case 24:
+            return current_oscillator.freqEnv;
+        case 25:
             return Tone.Master;
         default:
             throw "what button is this??";
@@ -679,7 +712,8 @@ wet_outMax = 100;
 
 function knob_initialize(knob, elem, side) {
     console.log(side);
-    if (side == "left") {
+    if (side == "left") { //wetness stuff
+        //console.log(knob._properties.key_id_id);
         switch (knob._properties.key_id_id) {
             case "sinIn":
                 knob.setProperty("valMin", -12); //volume
@@ -737,6 +771,81 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "vibratoIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "phaserIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "reverbIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "chorusIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "bitcrusherIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "chebIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "wahIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "pannerIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "pingpongdelayIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "pitchshiftIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "auto-filterIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "vibratoIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "duosynthIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "fatsynthIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "noiseIn":
+                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
+                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                break;
+            case "freqenvIn":
                 knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
                 knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
@@ -807,6 +916,51 @@ function knob_initialize(knob, elem, side) {
                 knob.setProperty("valMax", 20);
                 knob.setValue(5);
                 break;
+            case "phaserIn":
+                knob.setProperty("valMin", 1); //?
+                knob.setProperty("valMax", 15);
+                knob.setValue(1);
+                break;
+            case "reverbIn":
+                knob.setProperty("valMin", 1); //?
+                knob.setProperty("valMax", 40);
+                knob.setValue(2);
+                break;
+            case "chorusIn":
+                knob.setProperty("valMin", 1); //?
+                knob.setProperty("valMax", 30);
+                knob.setValue(2);
+                break;
+            case "bitcrusherIn":
+                knob.setProperty("valMin", 1); //?
+                knob.setProperty("valMax", 8);
+                knob.setValue(4);
+                break;
+            case "chebIn":
+                knob.setProperty("valMin", 1); //?
+                knob.setProperty("valMax", 100);
+                knob.setValue(30);
+                break;
+            case "wahIn":
+                break;
+            case "pannerIn":
+                break;
+            case "pingpongdelayIn":
+                break;
+            case "pitchshiftIn":
+                break;
+            case "auto-filterIn":
+                break;
+            case "vibratoIn":
+                break;
+            case "duosynthIn":
+                break;
+            case "fatsynthIn":
+                break;
+            case "noiseIn":
+                break;
+            case "freqenvIn":
+                break;
             default:
                 throw "what button is this?? Knob error";
         }
@@ -826,6 +980,7 @@ function new_knob(elem, side) {
     knob.setProperty("angleEnd", 0.75 * Math.PI);
     knob.setProperty("trackWidth", 0.4);
     knob.setProperty("key_id_id", elem.id);
+    //console.log(knob._properties.key_id_id);
     knob_initialize(knob, elem, side);
     // Set initial value.
     var listener = function (knob, value) {
@@ -834,7 +989,6 @@ function new_knob(elem, side) {
         if (side == "left") { //WETNESS LEVELS //its on the right for some reason
             switch (knob._properties.key_id_id) {
                 case "sinIn":
-                    //console.log("right");
                     current_oscillator.osc.volume.value = value;
                     break;
                 case "squareIn":
@@ -870,16 +1024,61 @@ function new_knob(elem, side) {
                     break;
                 case "vibratoIn":
                     current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
-                    console.log(current_oscillator.fx3.effect.wet.value);
+
+                    break;
+                case "phaserIn":
+                    current_oscillator.fx2.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "reverbIn":
+                    current_oscillator.fx4.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "chorusIn":
+                    current_oscillator.fx5.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "bitcrusherIn":
+                    current_oscillator.fx6.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "chebIn":
+                    current_oscillator.fx7.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "wahIn":
+                    current_oscillator.fx8.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "pannerIn":
+                    current_oscillator.fx9.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "pingpongdelayIn":
+                    current_oscillator.fx10.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "pitchshiftIn":
+                    current_oscillator.fx11.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "auto-filterIn":
+                    current_oscillator.fx12.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "vibratoIn":
+                    current_oscillator.fx16.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "duosynthIn":
+                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax); //LOOK INTO THIS
+                    break;
+                case "fatsynthIn":
+                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "noiseIn":
+                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break;
+                case "freqenvIn":
+                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;
                 default:
+                    console.log(knob._properties.key_id_id);
                     throw "what button is this?? Knob error";
             }
         }
         else if (side == "right") { //EFFECT ALTER STUFF. on the left for some reason
             switch (knob._properties.key_id_id) {
                 case "sinIn":
-                    //console.log("left");
                     current_oscillator.osc.oscillator.partialCount = value;
                     break;
                 case "squareIn":
@@ -907,7 +1106,7 @@ function new_knob(elem, side) {
                     break;
                 case "tremoloIn":
                     tremolo.frequency.value = value;
-                    console.log(tremolo.frequency.value)
+                    //console.log(tremolo.frequency.value)
                     break;
                 case "flangerIn"://delay effect 
                     current_oscillator.fx17.effect.delayTime.value = scale(value, 100, 0, 0.01, 1.2);
@@ -915,7 +1114,43 @@ function new_knob(elem, side) {
                     break;
                 case "vibratoIn":
                     current_oscillator.fx3.effect.frequency.value = value;
-                    console.log(current_oscillator.fx3.effect.frequency.value)
+                    console.log(current_oscillator.fx3.effect.frequency.value);
+                    break;
+                case "phaserIn":
+                    current_oscillator.fx2.frequency.value = value;
+                    break;
+                case "reverbIn":
+                    current_oscillator.fx4.effect.decay = value;
+                    break;
+                case "chorusIn":
+                    current_oscillator.fx5.effect.frequency.value = value;
+                    console.log(current_oscillator.fx5.effect.frequency.value);
+                    break;
+                case "bitcrusherIn":
+                    current_oscillator.fx6.effect.bits.value = value;
+                    break;
+                case "chebIn":
+                    current_oscillator.fx7.effect.order = value;
+                    break;
+                case "wahIn":
+                    break;
+                case "pannerIn":
+                    break;
+                case "pingpongdelayIn":
+                    break;
+                case "pitchshiftIn":
+                    break;
+                case "auto-filterIn":
+                    break;
+                case "vibratoIn":
+                    break;
+                case "duosynthIn":
+                    break;
+                case "fatsynthIn":
+                    break;
+                case "noiseIn":
+                    break;
+                case "freqenvIn":
                     break;
                 default:
                     throw "what button is this?? Knob error";
@@ -923,7 +1158,7 @@ function new_knob(elem, side) {
         }
         else { throw "what side button is this?? Knob error"; }
 
-    }
+    };
     knob.addListener(listener);
 
     // Create element node.
@@ -944,3 +1179,400 @@ function new_knob(elem, side) {
     elem.appendChild(node);
     return knob;
 }
+
+//END OF CLAUDIO THING
+
+
+
+
+
+
+
+
+
+
+//START OF LEONE ENV THING
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var env = {
+    attack: 1.0,
+    decay: 1.0,
+    sustain: 0.5,
+    release: 1.5
+};
+
+var total;
+var current;
+//console.log(env.attack/total)
+
+function drawAxis() {
+    ctx.save();
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.moveTo(60, 25);
+    ctx.lineTo(60, 250);
+    ctx.lineTo(480, 250);
+    //total height = 200px
+    //total width = 400px
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    ctx.closePath();
+    drawArrowhead(490, 250, Math.PI / 2, 7);
+    drawArrowhead(60, 15, 0, 7);
+
+    // Max Amplitude Dotted Line
+    ctx.beginPath();
+    ctx.moveTo(48, 44);
+    ctx.lineTo(480, 44);
+    ctx.setLineDash([2, 2]);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    ctx.closePath();
+    ctx.restore();
+
+    // Amp max
+    ctx.font = "italic 18px serif";
+    ctx.fillStyle = "white";
+    ctx.fillText("Amp", 25, 48);
+    ctx.font = "italic 12px serif";
+    ctx.fillText("max", 46, 56);
+
+    // Amplitude
+    ctx.save();
+    ctx.translate(50, 145);
+    ctx.rotate(-Math.PI / 2);
+    ctx.font = "bold 22px serif";
+    ctx.fillText("Amplitude", 0, 0);
+    ctx.restore();
+
+    // 0
+    ctx.font = "italic bold 30px serif";
+    ctx.fillStyle = "white";
+    ctx.fillText("0", 32, 274);
+
+    // t
+    ctx.font = "italic bold 30px serif";
+    ctx.fillText("t", 484, 273);
+
+    // key pressed
+    ctx.beginPath();
+    ctx.moveTo(60, 268);
+    ctx.lineTo(60, 260);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    drawArrowhead(60, 252, 0, 5);
+    ctx.font = "italic 12px serif";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("key", 59, 278);
+    ctx.fillText("pressed", 59, 290);
+    ctx.closePath();
+}
+
+function drawArrowhead(x, y, radians, size) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(x, y);
+    ctx.rotate(radians);
+    ctx.moveTo(0, 0);
+    ctx.lineTo(size, size * 1.7);
+    ctx.lineTo(-size, size * 1.7);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+    ctx.restore();
+}
+
+function draw() {
+    // reset variables
+    total = env.attack + env.decay + env.release;
+    current = 60;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Attack
+    ctx.beginPath();
+    ctx.moveTo(60, 250);
+    ctx.lineTo(env.attack / total * 300 + current, 50);
+    current += env.attack / total * 300;
+
+    // Decay
+    ctx.lineTo(env.decay / total * 300 + current, 250 - env.sustain * 200);
+    current += env.decay / total * 300;
+
+    // Sustain
+    ctx.lineTo(current + 100, 250 - env.sustain * 200);
+    current += 100;
+
+    // Release
+    ctx.lineTo(env.release / total * 300 + current, 250);
+    current += env.release / total * 300;
+
+    // stroke
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "lightgrey";
+    ctx.stroke();
+    ctx.closePath();
+
+    // RELEASE LINES
+    if (env.release != 0) {
+        // vertical release
+        ctx.beginPath();
+        ctx.moveTo(current, 250);
+        ctx.lineTo(current, 25);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "purple";
+        if (env.release / total > .1) {
+            // horizontal release
+            ctx.moveTo(current - 10, 30);
+            current -= env.release / total * 300;
+            ctx.lineTo(current + 10, 30);
+            ctx.stroke();
+            ctx.closePath();
+            // arrowhead
+            drawArrowhead(current + env.release / total * 300 - 4, 30, Math.PI / 2, 9);
+            if (env.release / total > .16) {
+                // R
+                ctx.font = "italic 20px serif";
+                ctx.fillStyle = "purple";
+                ctx.textAlign = "center";
+                ctx.fillText("R", current + env.release / total * 150 - 2, 26);
+            }
+        } else {
+            ctx.stroke();
+            ctx.closePath();
+            current -= env.release / total * 300;
+        }
+    }
+
+    // key released
+    ctx.beginPath();
+    ctx.moveTo(current, 268);
+    ctx.lineTo(current, 260);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "white";
+    ctx.stroke();
+    drawArrowhead(current, 252, 0, 5);
+    ctx.font = "italic 12px serif";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("key", current, 278);
+    ctx.fillText("released", current, 290);
+    ctx.closePath();
+
+    // SUSTAIN LINES
+    // vertical sustain black
+    ctx.beginPath();
+    ctx.moveTo(current, 250);
+    ctx.lineTo(current, 25);
+    ctx.stroke();
+    ctx.closePath();
+    if (env.sustain != 0) {
+        ctx.beginPath();
+        if (env.sustain > 0.1) {
+            // vertical sustain blue
+            ctx.moveTo(current - 50, 250);
+            ctx.lineTo(current - 50, 260 - env.sustain * 200);
+        }
+        // horizontal sustain
+        ctx.moveTo(current - 10, 250 - env.sustain * 200);
+        current -= 100;
+        ctx.lineTo(current + 10, 250 - env.sustain * 200);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+        ctx.closePath();
+        if (env.sustain > 0.1) {
+            // arrowhead
+            drawArrowhead(current + 50, 254 - env.sustain * 200, 0, 9);
+            // S
+            ctx.font = "italic 20px serif";
+            ctx.fillStyle = "blue";
+            ctx.textAlign = "center";
+            ctx.fillText("S", current + 40, 264 - env.sustain * 100);
+        }
+    } else {
+        current -= 100;
+    }
+
+    // DECAY LINES
+    if (env.decay != 0) {
+        // vertical decay
+        ctx.beginPath();
+        ctx.moveTo(current, 250);
+        ctx.lineTo(current, 25);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "#f60";
+        if (env.decay / total > .1) {
+            // horizontal decay
+            ctx.moveTo(current - 10, 30);
+            current -= env.decay / total * 300;
+            ctx.lineTo(current + 10, 30);
+            ctx.stroke();
+            ctx.closePath();
+            // arrowhead
+            drawArrowhead(current + env.decay / total * 300 - 4, 30, Math.PI / 2, 9);
+            if (env.decay / total > .16) {
+                // D
+                ctx.font = "italic 20px serif";
+                ctx.fillStyle = "#f60";
+                ctx.textAlign = "center";
+                ctx.fillText("D", current + env.decay / total * 150 - 2, 26);
+            }
+        } else {
+            ctx.stroke();
+            ctx.closePath();
+            current -= env.decay / total * 300;
+        }
+    }
+
+    // ATTACK LINES
+    if (env.attack != 0) {
+        // vertical attack
+        ctx.beginPath();
+        ctx.moveTo(current, 250);
+        ctx.lineTo(current, 25);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "green";
+        if (env.attack / total > .1) {
+            // horizontal attack
+            ctx.moveTo(current - 10, 30);
+            current -= env.attack / total * 300;
+            ctx.lineTo(current + 10, 30);
+            ctx.stroke();
+            ctx.closePath();
+            // arrowhead
+            drawArrowhead(current + env.attack / total * 300 - 4, 30, Math.PI / 2, 9);
+            if (env.attack / total > .16) {
+                // A
+                ctx.font = "italic 20px serif";
+                ctx.fillStyle = "green";
+                ctx.textAlign = "center";
+                ctx.fillText("A", current + env.attack / total * 150 - 2, 26);
+            }
+        } else {
+            ctx.stroke();
+            ctx.closePath();
+            current -= env.attack / total * 300;
+        }
+    }
+
+    drawAxis();
+}
+draw();
+
+var attacking = false;
+var envelope;
+var osc;
+
+function createEnvelope() {
+    envelope = new Tone.AmplitudeEnvelope({
+        attack: env.attack,
+        decay: env.decay,
+        sustain: env.sustain,
+        release: env.release
+    }).toMaster();
+
+    osc = new Tone.Oscillator({
+        partials: [3, 2, 1],
+        type: "custom",
+        frequency: "C4",
+        volume: -8
+    })
+    //.connect(envelope)
+    //.start();
+}
+createEnvelope();
+
+
+
+$("#attackRange").on("change", function () {
+    env.attack = Number($("#attackRange").val());
+    createEnvelope();
+    draw();
+    $("#attack").html($(this).val());
+});
+
+$("#decayRange").on("change", function () {
+    env.decay = Number($("#decayRange").val());
+    createEnvelope();
+    draw();
+    $("#decay").html($(this).val());
+});
+
+$("#sustainRange").on("change", function () {
+    env.sustain = Number($("#sustainRange").val());
+    createEnvelope();
+    draw();
+    $("#sustain").html($(this).val());
+});
+
+$("#releaseRange").on("change", function () {
+    env.release = Number($("#releaseRange").val());
+    createEnvelope();
+    draw();
+    $("#release").html($(this).val());
+});
+
+$("#attackRange").on("mousemove", function () {
+    env.attack = Number($("#attackRange").val());
+    draw();
+    $("#attack").html($(this).val());
+});
+
+$("#decayRange").on("mousemove", function () {
+    env.decay = Number($("#decayRange").val());
+    draw();
+    $("#decay").html($(this).val());
+});
+
+$("#sustainRange").on("mousemove", function () {
+    env.sustain = Number($("#sustainRange").val());
+    draw();
+    $("#sustain").html($(this).val());
+});
+
+$("#releaseRange").on("mousemove", function () {
+    env.release = Number($("#releaseRange").val());
+    draw();
+    $("#release").html($(this).val());
+});
+
+document.getElementById("attackRange").style.backgroundColor = 'green';
+document.getElementById("decayRange").style.backgroundColor = '#FF6600';
+document.getElementById("sustainRange").style.backgroundColor = 'blue';
+document.getElementById("releaseRange").style.backgroundColor = 'purple';
+
+/*
+          case "phaserIn":
+          break;
+          case "reverbIn":
+          break;
+          case "chorusIn":
+          break;
+          case "bitcrusherIn":
+          break;
+          case "chebIn":
+          break;
+          case "wahIn":
+          break;
+          case "pannerIn":
+          break;
+          case "pingpongdelayIn":
+          break;
+          case "pitchshiftIn":
+          break;
+          case "auto-filterIn":
+          break;
+          case "vibratoIn":
+          break;
+          case "duosynthIn":
+          break;
+          case "fatsynthIn":
+          break;
+          case "noiseIn":
+          break;
+          case "freqenvIn":
+          break;*/

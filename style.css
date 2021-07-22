@@ -1,207 +1,382 @@
 #bounds {
-  background-color: darkblue;
-  height: 800px;
-  width: 1500px;
-  margin: 0 auto;
-  position: relative;
+    background-color: darkblue;
+    height: 800px;
+    width: 1500px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .big_container {
-  background-color: black;
-  position: absolute;
-  padding: 0px;
+    background-color: black;
+    position: absolute;
+    padding: 0px;
 }
 
 
 #workspace {
-  position: absolute;
-  right: 0px;
-  height: 700px;
-  width: 1390px;
+    position: absolute;
+    right: 0px;
+    height: 700px;
+    width: 1390px;
 }
 
 #osc_container {
-  left: 0px;
-  top: 0px;
-  height: 790px;
-  padding: 5px;
+    left: 0px;
+    top: 0px;
+    height: 790px;
+    padding: 5px;
 }
 
 #eff_container {
-  right: 0px;
-  bottom: 0px;
-  width: 1380px;
-  padding: 5px;
+    right: 0px;
+    bottom: 0px;
+    width: 1380px;
+    padding: 5px;
 }
 
 .key_container {
-  padding: 5px;
-  /*background-color: white;*/
-  margin: 5px;
+    padding: 5px;
+    /*background-color: white;*/
+    margin: 5px;
 }
 
 #dest_cont {
-  background-color: green;
-  position: absolute;
-  height: 75px;
-  width: 90px;
-  left: 0px;
-  bottom: 0px;
-  z-index: 1;
+    background-color: green;
+    position: absolute;
+    height: 75px;
+    width: 90px;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1;
 }
 
 #adsr_cont {
-  right: 0px;
-  top: 0px;
-  height: 200px;
-  width: 300px;
+    right: 0px;
+    top: 0px;
+    height: 300px;
+    width: 310px;
 }
 
 .hor {
-  display: inline-block;
+    display: inline-block;
 }
 
-.keys{
-  border-radius: 5px;
-  border: 2px solid black;
-  background-color: black;
-  border-color:black;
-  display: inline-block;
-  cursor: pointer;
+.keys {
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: black;
+    border-color: black;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .key_osc {
-  background-color: yellow;
+    background-color: red;
 }
 
-.button{
-  background: white;
-  background-size: cover;
-  background-position: center;
-  border: none;
-  width: 80px;
-  border-radius: 900px;
-  height: 70px;
-  transition: all 0.5s;
-  cursor: pointer;
+.key_filter {
+    background-color: green;
 }
 
-.sin{
-background-image: url("https://i.postimg.cc/d3bR6z8H/sinicon.jpg");
-}
-.square{
-background-image: url("https://i.postimg.cc/bNh2HgP6/square1.png");
-}
-.saw{
-background-image: url("https://i.postimg.cc/zGwq7KC8/Screenshot-319.png");
+#sin {
+    background-color: yellow;
 }
 
-.triangle{
-background-image: url("https://i.postimg.cc/fRbJVH41/Screenshot-321.png");
+#square {
+    background-color: blue;
 }
 
-.lpf{
-background-image: url("http://reactable.com/mobile/manual/icons/filter_lowpass.png");
-}
-.hpf{
-  background-image: url("http://reactable.com/mobile/manual/icons/filter_hipass.png");
-}
-.bpf{
-  background-image: url("http://reactable.com/mobile/manual/icons/filter_bandpass.png");
+#saw {
+    background-color: orange;
 }
 
-.distort{ 
-background-image: url("https://i.postimg.cc/kX1Fk9YV/Distorsione-upload.png");
-}
-.skull{ 
-background-image: url("https://image.freepik.com/free-vector/human-skull-glitch-effect-distortion-cranium-icon-isolated-brainpan_168425-11.jpg");
-}
-.flanger{ 
-background-image: url("https://i.postimg.cc/ZqTNRMQk/Screenshot-267.png");
-}
-.tremolo{ 
-border-radius: 0px;
-background-image: url("https://i.postimg.cc/cJmQBS34/Screenshot-270.png");
-}
-.vibrato{
-  border-radius: 10px;
-  background-image: url("https://i.postimg.cc/7LTF5KJV/Screenshot-264.png");
+#triang {
+    background-color: brown;
 }
 
-.active{
-  border: 4px solid white;
-  position: absolute;
+#lpf {
+    background-color: gold;
 }
 
-.inactive_button{
-  diplay: none;
+#hpf {
+    background-color: silver;
+}
+
+#bpf {
+    background-color: purple;
+}
+
+.button {
+    background: white;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    width: 80px;
+    border-radius: 900px;
+    height: 70px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.button_filter {
+    border-radius: 20px;
+}
+
+.sin {
+    background-image: url("https://i.postimg.cc/j5xWvj89/sin.jpg");
+}
+
+.square {
+    background-image: url("https://i.postimg.cc/CKN5ZgF4/square.png");
+}
+
+.saw {
+    background-image: url("https://i.postimg.cc/vTpZR8zG/saw.png");
+}
+
+.triangle {
+    background-image: url("https://i.postimg.cc/7LxYrWgJ/triangle.png");
+}
+
+.lpf {
+    background-image: url("https://i.postimg.cc/XXS4HHjJ/lowpass.png");
+}
+
+.hpf {
+    background-image: url("https://i.postimg.cc/cHSzbpYP/highpass.png");
+}
+
+.bpf {
+    background-image: url("https://i.postimg.cc/3RtZFVZX/bandpass.png");
+}
+
+.distort {
+    background-image: url("https://i.postimg.cc/KzpnMLZQ/distorsion.png");
+}
+
+.phaser {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/vm3nJ96M/phaser.jpg");
+}
+
+.tremolo {
+    border-radius: 0px;
+    background-image: url("https://i.postimg.cc/fbTCSMcz/Tremolo.png");
+}
+
+.reverb {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/4x4VBBmw/reverb.jpg");
+}
+
+.chorus {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/pTrs4PrG/chorus.jpg");
+}
+
+.flanger {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/SKTBJTzP/flanger.jpg");
+}
+
+.bitcrusher {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/m2YKQ2HC/bitcrusher.jpg");
+}
+
+.cheb {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/CxvPNZLB/cheb.png");
+}
+
+.wah {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/xdgRfLp1/Wah.jpg");
+}
+
+.panner {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/9fRpYJnK/panning.jpg");
+}
+
+.pingpongdelay {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/rFfN6B67/pingpong.jpg");
+}
+
+.pitchshift {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/s2hYh1BR/pitchshift.jpg");
+}
+
+.auto-filter {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/x1kHwq3b/autofilter.jpg");
+}
+
+.vibrato {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/ydKZ3j4F/Vibrato.png");
+}
+
+.duosynth {
+    border-radius: 200px;
+    background-image: url("https://i.postimg.cc/FszJS1qn/duosynth.png");
+}
+
+.fatsynth {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/X7BY35t3/Fatsynth.png");
+}
+
+.noise {
+    border-radius: 10px;
+    background-image: url("https://i.postimg.cc/ydN7G30M/noise.jpg");
+}
+
+.freqenv {
+    border-radius: 5px;
+    background-image: url("https://i.postimg.cc/ZnGZ0fXm/freqenv.png");
+}
+
+#attackRange {
+    position: absolute;
+    top: 210px;
+    left: 60px;
+}
+
+#decayRange {
+    position: absolute;
+    top: 230px;
+    left: 60px;
+}
+
+#sustainRange {
+    position: absolute;
+    top: 250px;
+    left: 60px;
+}
+
+#releaseRange {
+    position: absolute;
+    top: 270px;
+    left: 60px;
+}
+
+.active {
+    border: 4px solid white;
+    position: absolute;
+}
+
+.inactive_button {
+    display: none;
 }
 
 .btn_out {
-  background-color: Crimson;
-  border: none;
-  color: white;
-   /* padding: 12px 16px;*/
-  font-size: 16px;
-  cursor: pointer;
-  position:absolute;
+    background-color: Crimson;
+    border: none;
+    color: white;
+    /* padding: 12px 16px;*/
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
 }
 
-.btn_out:hover {
-  background-color: DarkRed;
-}
+    .btn_out:hover {
+        background-color: DarkRed;
+    }
 
 .inactive:hover {
-  height: 70px;
-  width: 80px;
+    height: 70px;
+    width: 80px;
 }
 
 
 .line {
-  width: 5px;
-  height: 5px;
-  background-color: white;
-  position: absolute;
-  z-index: -1; /* put line behind the boxes */
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    position: absolute;
+    z-index: -1; /* put line behind the boxes */
 }
 
 .connection {
-  width: 20px;
-  height: 20px;
-  left: 30px;
-  background-color: grey;
-  position: absolute;
-  border-radius: 50%;
-  cursor: pointer;
+    width: 20px;
+    height: 20px;
+    left: 30px;
+    background-color: grey;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .in {
-  top: -10px;
+    top: -10px;
 }
 
 .out {
-  bottom: -10px;
+    bottom: -10px;
 }
 
 .inactive {
-  width: 40px;
-  height: 35px;
+    width: 40px;
+    height: 35px;
 }
 
 .connected {
-  background-color: white;
+    background-color: white;
 }
 
 #main_out_node {
-  position: absolute;
-  left: 690px;
-  top: 345px; 
+    position: absolute;
+    left: 690px;
+    top: 345px;
 }
 
 #main_out {
-  background-color: white;
+    background-color: white;
 }
 
 .knob {
-  position: absolute;
+    position: absolute;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inconsolata', monospace;
+    height: 100vh;
+    width: 100%;
+}
+
+
+canvas {
+    height: 200px;
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+#master {
+    padding: 15px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0 0 4px 25px;
+    border-color: #ed33cf;
+    min-height: 100%;
+    width: 100%;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 200px;
+    height: 15px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: white;
+    opacity: 0.5;
+    width: 10px;
+    height: 26px;
 }
