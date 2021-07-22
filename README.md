@@ -80,7 +80,7 @@ The model is checked constantly if an oscillator is present.
 If yes, the oscillator and its type is defined and the melody is initiated.
 After each connection, the function identify the button id’s and the audio context objects relating to those id’s. 
 Connects those id’s until it reaches to the output node.
-Tone.js ‘connect’ method is used [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)
+Tone.js ‘connect’ method is used to handle the audio context connections. [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)
 
 ## Audio Context Handling, Destroy lines
 
@@ -97,11 +97,15 @@ contains the main js file, with all the functions and dependencies components
 - styles.css contains the styling of the application
 
 
+
 ## Dependencies
 
 - [**React**]: structure of the web page and of the View.
 - [**Tone.js**]: a web audio framework for creating interactive music in the web intuitively.
 - [**jQuery**]Library that facilitates communication between html and JS and is optimal for event handling and animation.
+
+## [ Our presentation ](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing
+)
 
 ## Authors
 Umut Fidan<br>
