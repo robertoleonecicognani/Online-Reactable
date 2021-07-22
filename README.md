@@ -24,14 +24,36 @@ The oscillators initiates the melody with the timber of a chosen synthesiser, It
 - **sin, square, saw** and **triangle waves** Under the effects there is also **Duo synth** that can be used similarly. 
 
 Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.
-The left one increases the harmonics of the wave, and for Duo Synth it increases the vibrato speed.
-The right one regulates how "wet" the sound in output should be respect to the one in input.
+The left knob increases the harmonics of the wave, and for Duo Synth it increases the vibrato speed.
+The right knob regulates the volume of the sound.
 
 ## Filters
 
 Filters lets us alter the frequency composition of the sound. There are 3 filter definitions in the project:
 -**low, high** and **band pass filters.**
 The left knob controls the Q parameter. Normally this only controls the When this parameter is very high very fun stuff happens! The Right knob controls the cut-off frequency and in the case of band pass, it controls the central frequency of the filter.
+
+## Effects 
+Effect buttons enable the user to change and alter the sound by cascading different effects together. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.
+
+Every effects left knob:
+Distortion: Distortion level
+Phaser: Frequency of the panning effect
+Vibrato: Speed of the vibrato
+Reverb: The decay time
+Bitcrusher: Bit number of downsampler
+Chebyshev: Chebyshev waveshaper order number
+Autowah: The basefrequency of the bandpass filter
+Autopanner: Frequency of panning effect
+PingpongDelay: Feedback amount
+Pitchshift: Pitch interval
+Autofilter: Frequency of the autofilter
+Flanger: Delay time
+Tremolo: Rate of the effect
+
+  Some interesting example usages of effects:
+Pitchshift: The user can set the wetness to 50% and set the interval which creates the sensation of chords.
+Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
 ## Envelope Regulator
 The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control and visualize the ADSR parameters on the fly.
@@ -44,6 +66,35 @@ Every button is provided with connection nodes from which a line can be drawn. O
 If the user wishes to hear a melody with the unaltered sound from the oscillator he must connect the corresponding button directly to the output node, otherwise they can connect it to an effect and have this last one be connected to the general output. It is possible to have multiple in effects in cascade.
 The user has control over several factors that include oscillator types, filters, and effects, and can combine and arrange them to obtain musical outputs with different sonic characteristics. The Web React table serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.
 <img align="left" src="readMeImages/connections.png"  width="50%" style="margin-left:5px; margin-bottom:10px">
+
+## How is Audio Created?
+We used Tone.js, for effects, timing the melody, and Audio Context handling 
+A wrapper class for Tone.js for bypassing elements on the fly *
+Pure-knob for creating/drawing the knobs, for changing the parameters of each button, partially customized by us * 
+A helper envelope function that lets us change envelope on the fly *
+Custom functions that we wrote that connects everything
+
+[I'm an inline-style link](https://www.google.com)
+
+[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+
+[I'm a reference-style link][Arbitrary case-insensitive reference text]
+
+[I'm a relative reference to a repository file](../blob/master/LICENSE)
+
+[You can use numbers for reference-style link definitions][1]
+
+Or leave it empty and use the [link text itself].
+
+URLs and URLs in angle brackets will automatically get turned into links. 
+http://www.example.com or <http://www.example.com> and sometimes 
+example.com (but not on Github, for example).
+
+Some text to show that the reference links can follow later.
+
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
+[1]: http://slashdot.org
+[link text itself]: http://www.reddit.com
 
 
 
