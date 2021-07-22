@@ -8,7 +8,7 @@ The original Reactable is an electronical musical instrument that lets the user 
 Our goal was to implement the physical Reactable on a web page so that it is more portable and accessible to all. The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano. 
 
 
-## How does it work? 
+## How do you use it? 
 The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. It is possible to include these buttons into the interface by clicking on them and connecting them to create interesting combinations.
 
 ![Screenshot](readMeImages/interface.png)
@@ -69,7 +69,7 @@ The user has control over several factors that include oscillator types, filters
 
 ## How is Audio Created?
 We used Tone.js, for effects, timing the melody, and Audio Context handling [ * ](https://tonejs.github.io/)
-Also a wrapper class for Tone.js for bypassing elements on the fly [ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
+We also needed a wrapper class for Tone.js for bypassing elements on the fly [ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
 Pure-knob library for creating/drawing the knobs, for changing the parameters of each button, partially customized by us [ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
 A helper envelope function that lets us change envelope on the fly [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
 Custom functions that we wrote that connects everything
