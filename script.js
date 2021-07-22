@@ -4,11 +4,7 @@ const pureknob = require('./pureknob')
 
 
 
-
-
-
 var fat_spread = 40; //fatsynth
-console.log(44444)
 var env = {
     attack: 0,
     decay: 0.1,
@@ -69,14 +65,15 @@ class FX extends Tone.ToneAudioNode {
         return this;
     }
 }
+
 class fx_oscillator {
     constructor() {
         this.freqEnv_flag = 0;
         this.envelope = new Tone.AmplitudeEnvelope({
-            attack: env.attack,
-            decay: env.decay,
-            sustain: env.sustain,
-            release: env.release
+            attack: 0,
+            decay: 0.1,
+            sustain: 0.1,
+            release: 1
         });
         this.fx1 = new FX({
             effect: Tone.Distortion, // effect class
@@ -115,7 +112,9 @@ class fx_oscillator {
             options: { baseFrequency: 100, octaves: 6, sensitivity: 0, wet: 1 },
             bypass: false
         });
-        this.fx9 = new FX({ effect: Tone.AutoPanner, bypass: true });
+        this.fx9 = new Tone.AutoPanner;
+        this.fx9.start();
+
         this.fx10 = new FX({
             effect: Tone.PingPongDelay,
             options: { delaytime: "8n", feedback: 0.6 }, //wet: 0.5 },
@@ -128,7 +127,7 @@ class fx_oscillator {
         });
         this.fx12 = new FX({
             effect: Tone.AutoFilter,
-            options: { frequency: 20, baseFrequency: 200, octaves: 2.6 },
+            options: { frequency: 5, baseFrequency: 50, octaves: 1 },
             bypass: false
         });
         this.fx13 = new FX({
@@ -156,11 +155,8 @@ class fx_oscillator {
             options: { delayTime: "8n", feedback: 0.5 },
             bypass: false
         });
-        //this.fx18 = new FX({
-        //  effect: Tone.tremolo,
-        //  options: { frequency: 9, depth: 0.75 },
-        //  bypass: false
-        //});
+        this.fx18 = new Tone.Tremolo;
+        this.fx18.start();
 
         this.freqEnv = new Tone.FrequencyEnvelope({
             attack: 0.0,
@@ -198,6 +194,7 @@ class fx_oscillator {
                 break;
             case "duosynth":
                 this.osc = new Tone.DuoSynth();
+                this.osc.volume.value = -18;
                 break;
             case "fatsynth":
                 this.osc = new Tone.FatOscillator(frequency, "sine", fat_spread);
@@ -221,16 +218,21 @@ class fx_oscillator {
             Tone.Transport.start();
             this.loopA = new Tone.Loop((time) => {
                 const now = Tone.now();
-                this.osc.triggerAttackRelease("C4", "8n", now);
-                this.osc.triggerAttackRelease("D4", "8n", now + time_interval);
-                this.osc.triggerAttackRelease("E4", "8n", now + 2 * time_interval);
-                this.osc.triggerAttackRelease("F4", "8n", now + 3 * time_interval);
-                this.osc.triggerAttackRelease("G4", "8n", now + 4 * time_interval);
-                this.osc.triggerAttackRelease("A4", "8n", now + 5 * time_interval);
-                this.osc.triggerAttackRelease("B4", "8n", now + 6 * time_interval);
-                this.osc.triggerAttackRelease("C5", "8n", now + 7 * time_interval);
+                this.osc.triggerAttackRelease("D3", "16n", now);
+                this.osc.triggerAttackRelease("E4", "8n", now + time_interval);
+                this.osc.triggerAttackRelease("G4", "8n", now + 2 * time_interval);
+                this.osc.triggerAttackRelease("E5", "8n", now + 3 * time_interval);
+                this.osc.triggerAttackRelease("G5", "8n", now + 4 * time_interval);
+                this.osc.triggerAttackRelease("G4", "8n", now + 5 * time_interval);
+                this.osc.triggerAttackRelease("E5", "8n", now + 6 * time_interval);
+                this.osc.triggerAttackRelease("F5", "8n", now + 7 * time_interval);
+                this.osc.triggerAttackRelease("E5", "8n", now + 8 * time_interval);
+                this.osc.triggerAttackRelease("D5", "8n", now + 9 * time_interval);
+                this.osc.triggerAttackRelease("D4", "8n", now + 10 * time_interval);
+                this.osc.triggerAttackRelease("D5", "8n", now + 11 * time_interval);
+                this.osc.triggerAttackRelease("D4", "8n", now + 12 * time_interval);
             }, "1n").start(0);
-            Tone.Transport.bpm.value = 60;
+            Tone.Transport.bpm.value = 30;
         }
     }
     //osc.triggerAttackRelease("C4", "8n");
@@ -488,11 +490,12 @@ function check_connection(i) {
     index = model[i]; //temp variable for connections
     //console.log(index);
     is_oscillator = check_if_oscillator(i); //check if the difference is an "oscillator to something else" connection.
-    if (is_oscillator) {//if an oscillator was chosen time to connect stuff until the end of chain or master
-        current_oscillator.setMelody();
-    }
+    //if (is_oscillator) {//if an oscillator was chosen time to connect stuff until the end of chain or master
+    // current_oscillator.setMelody();
+    //}
     a = choose_fx(i); //gives the current oscillators fx object, the sender
     b = choose_fx(model[i]); //gives the current oscillators fx object, the receiver
+    console.log(a);
     a.connect(b); //connection made
 
     stop_flag = 0;
@@ -521,32 +524,61 @@ function check_if_oscillator(i) {
     switch (i) {
         case 0:
             const s = new fx_oscillator();
-            s.fx1.effect.distortion = 0.8;
+            //s.fx1.effect.distortion = 0.8;
             current_oscillator = s;
             oscillators.push(s); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('sine');
+            current_oscillator.setMelody('sine');
+            //console.log(current_oscillator.envelope.attack);
+            //current_oscillator.envelope.attack=0.2;
+            //console.log(current_oscillator.envelope.attack);
             return true;
         case 1:
             const sq = new fx_oscillator();
-            sq.fx1.effect.distortion = 0.8;
+            //sq.fx1.effect.distortion = 0.8;
             current_oscillator = sq;
             oscillators.push(sq); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('square');
+            current_oscillator.setMelody('square');
             return true;
         case 2:
             const tr = new fx_oscillator();
-            tr.fx1.effect.distortion = 0.8;
+            //tr.fx1.effect.distortion = 0.8;
             current_oscillator = tr;
             oscillators.push(tr); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('triangle');
+            current_oscillator.setMelody('triangle');
             return true;
         case 3:
             const saw = new fx_oscillator();
-            saw.fx1.effect.distortion = 0.8;
+            //saw.fx1.effect.distortion = 0.8;
             current_oscillator = saw;
             oscillators.push(saw); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('sawtooth');
+            current_oscillator.setMelody('sawtooth');
             return true;
+        case 21:
+            const duo = new fx_oscillator();
+            current_oscillator = duo;
+            oscillators.push(duo); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('duosynth');
+            current_oscillator.setMelody('duosynth');
+            return true;
+        case 22:
+            const fat = new fx_oscillator();
+            current_oscillator = fat;
+            oscillators.push(fat); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('fatsynth');
+            current_oscillator.setMelody('fatsynth');
+            return true;
+        case 23:
+            const noise = new fx_oscillator();
+            current_oscillator = noise;
+            oscillators.push(noise); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('noise');
+            current_oscillator.setMelody('noise');
+            return true;
+
         default:
             // other buttons are not oscillators
             return false;
@@ -585,8 +617,8 @@ function choose_fx(i) {
         case 8:
             return current_oscillator.fx2; //what is this icon?
         case 9:
-            return tremolo;
-        //return current_oscillator.fx18;//doesnt work with fx?
+            //return tremolo;
+            return current_oscillator.fx18;//doesnt work with fx?
         case 10:
             return current_oscillator.fx4;
         case 11:
@@ -608,13 +640,13 @@ function choose_fx(i) {
         case 19:
             return current_oscillator.fx12;
         case 20:
-            return current_oscillator.fx16;
+            return current_oscillator.fx3;
         case 21:
-            return current_oscillator;
+            return current_oscillator.osc;
         case 22:
-            return current_oscillator;
+            return current_oscillator.osc;
         case 23:
-            return current_oscillator;
+            return current_oscillator.osc;
         case 24:
             return current_oscillator.freqEnv;
         case 25:
@@ -656,6 +688,59 @@ function remove_check_connection(index, what) {
     a = choose_fx(index); //gives the current oscillators fx object, the sender
     b = choose_fx(what); //gives the current oscillators fx object, the receiver
     a.disconnect(b);
+    //remove_check_if_oscillator(index);  //have to think
+
+}
+
+//have to think
+function remove_check_if_oscillator(i) {
+    console.log(i);
+    switch (i) {
+        case 0:
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff
+            current_oscillator = oscillators[oscillators.length - 1];
+        case 1:
+            const sq = new fx_oscillator();
+            //sq.fx1.effect.distortion = 0.8;
+            current_oscillator = sq;
+            oscillators.push(sq); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('square');
+            current_oscillator.setMelody('square');
+        case 2:
+            const tr = new fx_oscillator();
+            //tr.fx1.effect.distortion = 0.8;
+            current_oscillator = tr;
+            oscillators.push(tr); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('triangle');
+            current_oscillator.setMelody('triangle');
+        case 3:
+            const saw = new fx_oscillator();
+            //saw.fx1.effect.distortion = 0.8;
+            current_oscillator = saw;
+            oscillators.push(saw); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('sawtooth');
+            current_oscillator.setMelody('sawtooth');
+        case 21:
+            const duo = new fx_oscillator();
+            current_oscillator = duo;
+            oscillators.push(duo); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('duosynth');
+            current_oscillator.setMelody('duosynth');
+        case 22:
+            const fat = new fx_oscillator();
+            current_oscillator = fat;
+            oscillators.push(fat); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('fatsynth');
+            current_oscillator.setMelody('fatsynth');
+        case 23:
+            const noise = new fx_oscillator();
+            current_oscillator = noise;
+            oscillators.push(noise); //define an object for the oscillator and start connecting stuff
+            current_oscillator.setOsc('noise');
+            current_oscillator.setMelody('noise');
+        default:
+        // other buttons are not oscillators
+    }
 }
 
 // CONNECTING LINES
@@ -825,20 +910,15 @@ function knob_initialize(knob, elem, side) {
                 knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
-            case "vibratoIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                break;
             case "duosynthIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty("valMin", 100); //freq
+                knob.setProperty("valMax", 1500);
+                knob.setValue(440);
                 break;
             case "fatsynthIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty("valMin", 100); //freq
+                knob.setProperty("valMax", 1500);
+                knob.setValue(440);
                 break;
             case "noiseIn":
                 knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
@@ -942,20 +1022,39 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(30);
                 break;
             case "wahIn":
+                knob.setProperty("valMin", 100);
+                knob.setProperty("valMax", 1000);
+                knob.setValue(100);
                 break;
             case "pannerIn":
+                knob.setProperty("valMin", 1);
+                knob.setProperty("valMax", 90);
+                knob.setValue(2);
                 break;
             case "pingpongdelayIn":
+                knob.setProperty("valMin", 1);
+                knob.setProperty("valMax", 100);
+                knob.setValue(10);
                 break;
             case "pitchshiftIn":
+                knob.setProperty("valMin", -12);
+                knob.setProperty("valMax", 12);
+                knob.setValue(2);
                 break;
             case "auto-filterIn":
-                break;
-            case "vibratoIn":
+                knob.setProperty("valMin", 50);
+                knob.setProperty("valMax", 200);
+                knob.setValue(50);
                 break;
             case "duosynthIn":
+                knob.setProperty("valMin", 1);
+                knob.setProperty("valMax", 20);
+                knob.setValue(5);
                 break;
             case "fatsynthIn":
+                knob.setProperty("valMin", 10);
+                knob.setProperty("valMax", 100);
+                knob.setValue(20);
                 break;
             case "noiseIn":
                 break;
@@ -1016,15 +1115,15 @@ function new_knob(elem, side) {
                     //current_oscillator.fx1.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;//wetness
                 case "tremoloIn":
-                    tremolo.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);//wetness
-                    console.log(tremolo.wet.value);
+                    current_oscillator.fx18.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);//wetness
+                    //tremolo.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);//wetness
+                    //console.log(tremolo.wet.value);
                     break;//wetness
                 case "flangerIn"://delay effect 
                     current_oscillator.fx17.effect.feedback.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;
                 case "vibratoIn":
                     current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
-
                     break;
                 case "phaserIn":
                     current_oscillator.fx2.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
@@ -1045,7 +1144,7 @@ function new_knob(elem, side) {
                     current_oscillator.fx8.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;
                 case "pannerIn":
-                    current_oscillator.fx9.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx9.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;
                 case "pingpongdelayIn":
                     current_oscillator.fx10.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
@@ -1056,14 +1155,11 @@ function new_knob(elem, side) {
                 case "auto-filterIn":
                     current_oscillator.fx12.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
                     break;
-                case "vibratoIn":
-                    current_oscillator.fx16.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
-                    break;
                 case "duosynthIn":
-                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax); //LOOK INTO THIS
+                    current_oscillator.osc.frequency.value = value;
                     break;
                 case "fatsynthIn":
-                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.osc.frequency.value = value;
                     break;
                 case "noiseIn":
                     //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
@@ -1105,7 +1201,8 @@ function new_knob(elem, side) {
                 case "skullIn":
                     break;
                 case "tremoloIn":
-                    tremolo.frequency.value = value;
+                    current_oscillator.fx18.frequency.value = value;
+                    //tremolo.frequency.value = value;
                     //console.log(tremolo.frequency.value)
                     break;
                 case "flangerIn"://delay effect 
@@ -1133,20 +1230,25 @@ function new_knob(elem, side) {
                     current_oscillator.fx7.effect.order = value;
                     break;
                 case "wahIn":
+                    current_oscillator.fx8.effect.order = value;
                     break;
                 case "pannerIn":
+                    current_oscillator.fx9.frequency.value = value;
                     break;
                 case "pingpongdelayIn":
+                    current_oscillator.fx10.effect.feedback.value = value / 100; //since it goes from 0.1 to 1 in actuality
                     break;
                 case "pitchshiftIn":
+                    current_oscillator.fx11.effect.pitch = value;
                     break;
                 case "auto-filterIn":
-                    break;
-                case "vibratoIn":
+                    current_oscillator.fx12.effect.baseFrequency = value;
                     break;
                 case "duosynthIn":
+                    current_oscillator.osc.vibratoRate.value = value;
                     break;
                 case "fatsynthIn":
+                    current_oscillator.osc.spread = value;
                     break;
                 case "noiseIn":
                     break;
@@ -1181,9 +1283,6 @@ function new_knob(elem, side) {
 }
 
 //END OF CLAUDIO THING
-
-
-
 
 
 
@@ -1489,13 +1588,16 @@ createEnvelope();
 
 
 $("#attackRange").on("change", function () {
+    current_oscillator.envelope.attack = Number($("#attackRange").val());
     env.attack = Number($("#attackRange").val());
     createEnvelope();
     draw();
     $("#attack").html($(this).val());
+
 });
 
 $("#decayRange").on("change", function () {
+    current_oscillator.envelope.decay = Number($("#decayRange").val());
     env.decay = Number($("#decayRange").val());
     createEnvelope();
     draw();
@@ -1503,6 +1605,7 @@ $("#decayRange").on("change", function () {
 });
 
 $("#sustainRange").on("change", function () {
+    current_oscillator.envelope.sustain = Number($("#sustainRange").val());
     env.sustain = Number($("#sustainRange").val());
     createEnvelope();
     draw();
@@ -1510,6 +1613,7 @@ $("#sustainRange").on("change", function () {
 });
 
 $("#releaseRange").on("change", function () {
+    current_oscillator.envelope.release = Number($("#releaseRange").val());
     env.release = Number($("#releaseRange").val());
     createEnvelope();
     draw();
@@ -1517,24 +1621,28 @@ $("#releaseRange").on("change", function () {
 });
 
 $("#attackRange").on("mousemove", function () {
+    current_oscillator.envelope.attack = Number($("#attackRange").val());
     env.attack = Number($("#attackRange").val());
     draw();
     $("#attack").html($(this).val());
 });
 
 $("#decayRange").on("mousemove", function () {
+    current_oscillator.envelope.decay = Number($("#decayRange").val());
     env.decay = Number($("#decayRange").val());
     draw();
     $("#decay").html($(this).val());
 });
 
 $("#sustainRange").on("mousemove", function () {
+    current_oscillator.envelope.sustain = Number($("#sustainRange").val());
     env.sustain = Number($("#sustainRange").val());
     draw();
     $("#sustain").html($(this).val());
 });
 
 $("#releaseRange").on("mousemove", function () {
+    current_oscillator.envelope.release = Number($("#releaseRange").val());
     env.release = Number($("#releaseRange").val());
     draw();
     $("#release").html($(this).val());
