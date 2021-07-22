@@ -301,11 +301,14 @@ function teleport_in(key, index, source) {
     if (key.classList.contains("key_osc")) {
         input.remove();
     }
-    //console.log(new_key.id);
-    const knob1 = new_knob(new_key, "left");
-    const knob2 = new_knob(new_key, "right");
-    pair = new button_and_knobs(key, knob1, knob2);
-    pair_array.push(pair);
+    console.log(new_key.id);
+    if (new_key.id == "noiseIn") { ; }
+    else {
+        const knob1 = new_knob(new_key, "left");
+        const knob2 = new_knob(new_key, "right");
+        pair = new button_and_knobs(key, knob1, knob2);
+        pair_array.push(pair);
+    }
 }
 
 var pair_array = [];
