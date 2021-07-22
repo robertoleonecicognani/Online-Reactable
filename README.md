@@ -36,7 +36,7 @@ The left knob controls the Q parameter. Normally this only controls the When thi
 ## Effects 
 Effect buttons enable the user to change and alter the sound by cascading different effects together. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.
 
-Every effects left knob:<br>
+  Every effects' left knob:<br> <br>
 Distortion: Distortion level<br>
 Phaser: Frequency of the panning effect<br>
 Vibrato: Speed of the vibrato<br>
