@@ -29,7 +29,6 @@ The left one deals with the actual level or quality of the effect.
 The right one regulates how "wet" the sound in output should be respect to the one in input.
 
 
-<img align="left" src="button.png"  width="10%" style="margin-left:5px; margin-bottom:10px">
 
 ## Envelope Regulator
 The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control the ADSR parameters on the fly.
