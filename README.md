@@ -1,33 +1,33 @@
-# Web Reactable
-## What is the Web Reactable?
+# Online Reactable
+## What is an Online Reactable?
 <img align="left" src="readMeImages/MAE logo.png"  width="10%" style="margin-left:5px; margin-bottom:10px">
-The _Web Reactable_ is the recreation of a reactable in a web page and allows the user, in a very intuitive way and with few clicks, to manage and combine sound waves, filters and effects in real time. 
-Reactables are electronical musical instrument usually constituted by a table whose surface is a touch screen. Here objects of different types are selected and moved to generate a sound pattern, emulating the behavior of an analogue synthesizer. Parameters can be changed to obtain different kind of results and usually the production of music is accompanied by light effects. 
-Our goal was so that of implementing in a web page the main features of this instrument. The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering master’s degree of the Politecnico di Milano. 
+The _Online Reactable_ is the recreation of a reactable on a web page that allows the user to create & combine sound waves, filters and effects in real time in an intuitive way. 
+
+The original Reactable is an electronical musical instrument that lets the user create music by choosing buttons and putting them on an electronic table whose surface is a touch screen to change the effect parameters. Objects of oscillators and effects are selected and moved to generate a sound pattern, emulating the behavior of an analogue synthesizer. Parameters can be changed to obtain different kind of results and usually the production of music is accompanied by light effects. 
+
+Our goal was to implement the physical Reactable on a web page so that it is more portable and accessible to all. The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano. 
 
 
 ## How does it work? 
-The Web Reactable is made of a dark blue workspace interface surrounded by black columns that work as “menus”. They are filled with buttons ready to be imported into the interface with just one click.
+The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. It is possible to include these buttons into the interface by clicking on them.
 
 ![Screenshot](readMeImages/interface.png)
 
 The buttons can be subdivided in three categories: 
--oscillators, the real sources of sound
--filters, which can alter the bandwidth of the sound
+-oscillators, produces basic waveforms and and initiates the melody
+-filters, which can alter the frequency composition of the sound
 -effects, that can module sound and add reverb, tremolo, vibrato etc. 
-Moreover, to modify the ADSR model of our music we included in the top right part of the interface an envelope regulator and four slider
 
+Moreover, we included an envelope visulaizer and sliders on the top right part of the interface to visualize and modify the ADSR of the current synthiser envelope on the fly. 
 
 
 ## Buttons
-Let us enter in detail regarding the functionalities of all the buttons.
 The oscillators emit the melody playing notes with the timber of a specific kind of wave, while the filters cut the sound signals. It is possible to choose between the most common and used waves and filters so: 
 - **sin, square, saw** and **triangle waves**
 -**low, high** and **band pass filters.**
 Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.
 The left one deals with the actual level or quality of the effect.
 The right one regulates how "wet" the sound in output should be respect to the one in input.
-
 
 
 ## Envelope Regulator
