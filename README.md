@@ -104,7 +104,7 @@ contains the main js file, with all the functions and dependencies components
 - [**Tone.js**]: a web audio framework for creating interactive music in the web intuitively.
 - [**jQuery**]Library that facilitates communication between html and JS and is optimal for event handling and animation.
 
-## [I'm an inline-style link with title](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
+## [Our presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
 
 ## Authors
 Umut Fidan<br>
