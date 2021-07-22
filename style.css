@@ -41,7 +41,7 @@
 }
 
 #dest_cont {
-    background-color: green;
+    background-color: darkblue;
     position: absolute;
     height: 75px;
     width: 90px;
@@ -120,6 +120,10 @@
 
 .button_filter {
     border-radius: 20px;
+}
+
+.invisible {
+    display: none;
 }
 
 .sin {
