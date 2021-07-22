@@ -3,7 +3,6 @@ import * as Tone from 'tone'
 const pureknob = require('./pureknob')
 
 
-
 var fat_spread = 40; //fatsynth
 var env = {
     attack: 0,
@@ -158,14 +157,14 @@ class fx_oscillator {
         this.fx18 = new Tone.Tremolo;
         this.fx18.start();
 
-        this.freqEnv = new Tone.FrequencyEnvelope({
-            attack: 0.0,
-            decay: 0.0,
-            sustain: 0.0,
-            release: 0.0,
-            baseFrequency: frequency,
-            octaves: 1
-        });
+        /*this.freqEnv = new Tone.FrequencyEnvelope({
+          attack: 0.0,
+          decay: 0.0,
+          sustain: 0.0,
+          release: 0.0,
+          baseFrequency: frequency,
+          octaves: 1
+        });*/
         //this.freqEnv.connect(this.osc.frequency);
     }
     setOsc(osc_type) {
@@ -529,9 +528,9 @@ function check_if_oscillator(i) {
             oscillators.push(s); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('sine');
             current_oscillator.setMelody('sine');
-            //console.log(current_oscillator.envelope.attack);
-            //current_oscillator.envelope.attack=0.2;
-            //console.log(current_oscillator.envelope.attack);
+            console.log(current_oscillator.osc.envelope.attack);
+            current_oscillator.osc.envelope.attack = 0.2;
+            console.log(current_oscillator.osc.envelope.attack);
             return true;
         case 1:
             const sq = new fx_oscillator();
@@ -1586,9 +1585,8 @@ function createEnvelope() {
 createEnvelope();
 
 
-
 $("#attackRange").on("change", function () {
-    current_oscillator.envelope.attack = Number($("#attackRange").val());
+    current_oscillator.osc.envelope.attack = Number($("#attackRange").val());
     env.attack = Number($("#attackRange").val());
     createEnvelope();
     draw();
@@ -1597,7 +1595,7 @@ $("#attackRange").on("change", function () {
 });
 
 $("#decayRange").on("change", function () {
-    current_oscillator.envelope.decay = Number($("#decayRange").val());
+    current_oscillator.osc.envelope.decay = Number($("#decayRange").val());
     env.decay = Number($("#decayRange").val());
     createEnvelope();
     draw();
@@ -1605,7 +1603,7 @@ $("#decayRange").on("change", function () {
 });
 
 $("#sustainRange").on("change", function () {
-    current_oscillator.envelope.sustain = Number($("#sustainRange").val());
+    current_oscillator.osc.envelope.sustain = Number($("#sustainRange").val());
     env.sustain = Number($("#sustainRange").val());
     createEnvelope();
     draw();
@@ -1613,7 +1611,7 @@ $("#sustainRange").on("change", function () {
 });
 
 $("#releaseRange").on("change", function () {
-    current_oscillator.envelope.release = Number($("#releaseRange").val());
+    current_oscillator.osc.envelope.release = Number($("#releaseRange").val());
     env.release = Number($("#releaseRange").val());
     createEnvelope();
     draw();
@@ -1621,28 +1619,28 @@ $("#releaseRange").on("change", function () {
 });
 
 $("#attackRange").on("mousemove", function () {
-    current_oscillator.envelope.attack = Number($("#attackRange").val());
+    current_oscillator.osc.envelope.attack = Number($("#attackRange").val());
     env.attack = Number($("#attackRange").val());
     draw();
     $("#attack").html($(this).val());
 });
 
 $("#decayRange").on("mousemove", function () {
-    current_oscillator.envelope.decay = Number($("#decayRange").val());
+    current_oscillator.osc.envelope.decay = Number($("#decayRange").val());
     env.decay = Number($("#decayRange").val());
     draw();
     $("#decay").html($(this).val());
 });
 
 $("#sustainRange").on("mousemove", function () {
-    current_oscillator.envelope.sustain = Number($("#sustainRange").val());
+    current_oscillator.osc.envelope.sustain = Number($("#sustainRange").val());
     env.sustain = Number($("#sustainRange").val());
     draw();
     $("#sustain").html($(this).val());
 });
 
 $("#releaseRange").on("mousemove", function () {
-    current_oscillator.envelope.release = Number($("#releaseRange").val());
+    current_oscillator.osc.envelope.release = Number($("#releaseRange").val());
     env.release = Number($("#releaseRange").val());
     draw();
     $("#release").html($(this).val());
