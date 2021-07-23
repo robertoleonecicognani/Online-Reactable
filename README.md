@@ -8,8 +8,7 @@ The original Reactable is an electronical musical instrument that lets the user 
 Our goal was to implement the physical Reactable on a web page so that it is more portable and accessible to all. The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano. <br><br>
 You can find a web-page version of the project and other resources here: <br>
 
-[Website!](https://onlinereactable.surge.sh "s")
-
+### [Our Project!](https://onlinereactable.surge.sh "s")
 ### [Our presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
 ### [Demo Video!](https://youtu.be/J2Nzjh6Q07c "s")
 ### [Codepen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
