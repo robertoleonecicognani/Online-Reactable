@@ -85,6 +85,8 @@ If yes, the oscillator and its type is defined and the melody is initiated.
 After each connection, the function identify the button id’s and the audio context objects relating to those id’s. 
 Connects those id’s until it reaches to the output node.
 Tone.js ‘connect’ method is used to handle the audio context connections. [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)<br>
+<br>
 
 ## Audio Context Handling, Destroy lines
 
