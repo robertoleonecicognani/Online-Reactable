@@ -57,7 +57,7 @@ Pitchshift: The user can set the wetness to 50% and set the interval which creat
 Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
 ## Envelope Regulator
-The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control and visualize the ADSR parameters on the fly.
+The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control and visualize the ADSR parameters on the fly. We used this pen from the internet as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
 
 ## Movement and connecting lines
 To obtain sound in output the user must create an eventual connection between the oscillator buttons and the output node, located at the very center of the workspace.
@@ -75,6 +75,7 @@ Pure-knob library for creating/drawing the knobs, for changing the parameters of
 A helper envelope function that lets us change envelope on the fly [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
 Custom functions that we wrote that connects everything
 
+
 ## Audio Context Handling, Create lines
 Every time a connection is made between two buttons, the ‘model’ array keeps track of what is connected to what.
 The model is checked constantly if an oscillator is present.
@@ -88,6 +89,11 @@ Tone.js ‘connect’ method is used to handle the audio context connections. [ 
 Conversely, when a line is destroyed or the button is destroyed, every audio context object associated are detected and are disconnected.
 Tone.js ‘disconnect’ method is used [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
+## Knobs 
+We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect. 
+[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
+
+
 ## Files
 _Web Reactable_ is composed of:
 
@@ -96,7 +102,6 @@ _Web Reactable_ is composed of:
 contains the main js file, with all the functions and dependencies components
 
 - styles.css contains the styling of the application
-
 
 
 ## Dependencies
