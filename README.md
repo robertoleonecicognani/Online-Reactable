@@ -9,7 +9,7 @@ Our goal was to implement the physical Reactable on a web page so that it is mor
 You can find a web-page version of the project and other resources here: <br>
 
 ### [Our Project!](https://onlinereactable.surge.sh "s")
-### [Our presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
+### [Our Presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
 ### [Demo Video!](https://youtu.be/J2Nzjh6Q07c "s")
 ### [Codepen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
 
