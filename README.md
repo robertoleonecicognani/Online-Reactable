@@ -80,10 +80,10 @@ The user has control over several factors that include oscillator types, filters
 <img align="left" src="readMeImages/connections.png"  width="200%" >
 
 ## How is Audio Created?
-We used Tone.js, for effects, timing the melody, and Audio Context handling [ * ](https://tonejs.github.io/)
-We also needed a wrapper class for Tone.js for bypassing elements on the fly [ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
-Pure-knob library for creating/drawing the knobs, for changing the parameters of each button, partially customized by us [ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
-A helper envelope function that lets us change envelope on the fly [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
+We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
+We also needed a wrapper class for Tone.js for bypassing elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
+The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for creating/drawing the knobs, for changing the parameters of each button, partially customized by us. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0)
+A helper envelope function that lets us change envelope on the fly.[ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
 Custom functions that we wrote that connects everything
 
 
@@ -93,17 +93,17 @@ The model is checked constantly if an oscillator is present.
 If yes, the oscillator and its type is defined and the melody is initiated.
 After each connection, the function identify the button id’s and the audio context objects relating to those id’s. 
 Connects those id’s until it reaches to the output node.
-Tone.js ‘connect’ method is used to handle the audio context connections. [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
+Tone.js ‘connect’ method is used to handle the audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)
 <br>
 
 ## Audio Context Handling, Destroy lines
 
 Conversely, when a line is destroyed or the button is destroyed, every audio context object associated are detected and are disconnected.
-Tone.js ‘disconnect’ method is used [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
+Tone.js ‘disconnect’ method is used.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
 ## Knobs 
-We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect. [ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
+We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect.[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/knob.png?raw=true)<br>
 <br>
@@ -112,17 +112,19 @@ We used an open source library for knob implementation. This library allowed us 
 _Web Reactable_ is composed of:
 
 - **index.html**
+contains the main layout of the interface, the embedding of the script components, the CSS file and the libraries.
 - **main.js**
-contains the main js file, with all the functions and dependencies components
+contains the main functions and the application of Tone.js and other dependencies
 
-- styles.css contains the styling of the application
+- **styles.css**
+contains the styling of the application
 
 
 ## Dependencies
 
 - [**React**]: Structure of the web page and of the View.
 - [**Tone.js**]: A web audio framework for creating interactive music in the web intuitively version: 14.8.26.
-- [**jQuery**]Library that facilitates communication between html and JS and is optimal for event handling and animation.
+- [**jQuery**]: Library that facilitates communication between html and JS and is optimal for event handling and animation.
 
 ## [Our presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
 ## [DEMO VIDEO!](https://youtu.be/J2Nzjh6Q07c "s")
