@@ -1,7 +1,5 @@
-//import * as Tone from 'tone'
+const pureknob = require('./pureknob')
 
-//const pureknob = require('./pureknob')
-import * as pureknob from './pureknob.js'
 
 
 var fat_spread = 40; //fatsynth
@@ -112,7 +110,7 @@ class fx_oscillator {
             options: { baseFrequency: 100, octaves: 6, sensitivity: 0, wet: 1 },
             bypass: false
         });
-        this.fx9 = new Tone.AutoPanner;
+        this.fx9 = new Tone.AutoPanner();
         this.fx9.start();
 
         this.fx10 = new FX({
@@ -155,7 +153,7 @@ class fx_oscillator {
             options: { delayTime: "8n", feedback: 0.5 },
             bypass: false
         });
-        this.fx18 = new Tone.Tremolo;
+        this.fx18 = new Tone.Tremolo();
         this.fx18.start();
 
         /*this.freqEnv = new Tone.FrequencyEnvelope({
@@ -242,7 +240,7 @@ class fx_oscillator {
 
 const endCont = document.getElementById("dest_cont");
 
-const keys = document.querySelectorAll(".keys");
+keys = document.querySelectorAll(".keys");
 keys.forEach((key, index) => key.classList.add("node"));
 
 const main_out = document.getElementById("main_out");
@@ -250,13 +248,13 @@ const main_out_node = document.getElementById("main_out_node");
 input_assignment(main_out);
 main_out_node.classList.add("node");
 
-const nodes = document.querySelectorAll(".node");
-const num_nodes = nodes.length;
+nodes = document.querySelectorAll(".node");
+num_nodes = nodes.length;
 main_out.dataset.index = num_nodes - 1;
 
-var model = Array(num_nodes).fill(null);
+model = Array(num_nodes).fill(null);
 
-var buttons_eff = document.querySelectorAll(".button_effect");
+buttons_eff = document.querySelectorAll(".button_effect");
 buttons_eff.forEach(make_inactive);
 
 function make_inactive(button) {
@@ -266,9 +264,9 @@ function make_inactive(button) {
 keys.forEach((key, index) => click_assignment(key, index, key.parentNode));
 
 function click_assignment(key, index, source) {
-    const on = key.classList.toggle("waiting");
+    on = key.classList.toggle("waiting");
     if (on) {
-        const source = key.parentNode;
+        source = key.parentNode;
         key.onclick = function () {
             teleport_in(key, index, source);
         };
@@ -303,11 +301,11 @@ function teleport_in(key, index, source) {
         input.remove();
     }
     console.log(new_key.id);
-    if (new_key.id == "noiseIn") { ; }
+    if (new_key.id == "noiseIn") { const knob1 = new_knob(new_key, "left"); }
     else {
         const knob1 = new_knob(new_key, "left");
         const knob2 = new_knob(new_key, "right");
-        const pair = new button_and_knobs(key, knob1, knob2);
+        pair = new button_and_knobs(key, knob1, knob2);
         pair_array.push(pair);
     }
 }
@@ -484,26 +482,21 @@ function create_line(output, input) {
     //console.log(old_model);
 }
 
-//const p = new fx_oscillator();
-//p.fx1.effect.distortion = 0.8;
-//current_oscillator = p;
-//oscillators.push(p); //define an object for the oscillator and start connecting stuff
-
 function check_connection(i) {
-    var index = model[i]; //temp variable for connections
+    index = model[i]; //temp variable for connections
     //console.log(index);
-    const is_oscillator = check_if_oscillator(i); //check if the difference is an "oscillator to something else" connection.
+    is_oscillator = check_if_oscillator(i); //check if the difference is an "oscillator to something else" connection.
     //if (is_oscillator) {//if an oscillator was chosen time to connect stuff until the end of chain or master
     // current_oscillator.setMelody();
     //}
-    var a = choose_fx(i); //gives the current oscillators fx object, the sender
-    var b = choose_fx(model[i]); //gives the current oscillators fx object, the receiver
+    a = choose_fx(i); //gives the current oscillators fx object, the sender
+    b = choose_fx(model[i]); //gives the current oscillators fx object, the receiver
     console.log(a);
     a.connect(b); //connection made
 
-    var stop_flag = 0;
+    stop_flag = 0;
     while (stop_flag == 0) {
-        const is_null = check_if_null(model[index]); //check if the connection is also connected to something
+        is_null = check_if_null(model[index]); //check if the connection is also connected to something
         if (is_null) {
             //console.log(is_null);
             stop_flag = 1; //if there is no connection dont do anything else
@@ -527,7 +520,6 @@ function check_if_oscillator(i) {
     switch (i) {
         case 0:
             const s = new fx_oscillator();
-            //s.fx1.effect.distortion = 0.8;
             current_oscillator = s;
             oscillators.push(s); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('sine');
@@ -538,7 +530,6 @@ function check_if_oscillator(i) {
             return true;
         case 1:
             const sq = new fx_oscillator();
-            //sq.fx1.effect.distortion = 0.8;
             current_oscillator = sq;
             oscillators.push(sq); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('square');
@@ -546,7 +537,6 @@ function check_if_oscillator(i) {
             return true;
         case 2:
             const tr = new fx_oscillator();
-            //tr.fx1.effect.distortion = 0.8;
             current_oscillator = tr;
             oscillators.push(tr); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('triangle');
@@ -554,7 +544,6 @@ function check_if_oscillator(i) {
             return true;
         case 3:
             const saw = new fx_oscillator();
-            //saw.fx1.effect.distortion = 0.8;
             current_oscillator = saw;
             oscillators.push(saw); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('sawtooth');
@@ -581,7 +570,6 @@ function check_if_oscillator(i) {
             current_oscillator.setOsc('noise');
             current_oscillator.setMelody('noise');
             return true;
-
         default:
             // other buttons are not oscillators
             return false;
@@ -680,19 +668,17 @@ function remove_line(line, index) {
         nodes[index2].id
     );
     line.remove(); //removing the drawing
-    const ss = model[index];
+    ss = model[index];
     //console.log(ss);
     remove_check_connection(index, ss); //removing the sound connection
     model[index] = null; //making the element null
-
 }
 
 function remove_check_connection(index, what) {
-    const a = choose_fx(index); //gives the current oscillators fx object, the sender
-    const b = choose_fx(what); //gives the current oscillators fx object, the receiver
+    a = choose_fx(index); //gives the current oscillators fx object, the sender
+    b = choose_fx(what); //gives the current oscillators fx object, the receiver
     a.disconnect(b);
     //remove_check_if_oscillator(index);  //have to think
-
 }
 
 //have to think
@@ -725,7 +711,7 @@ function remove_check_if_oscillator(i) {
             current_oscillator.setMelody('sawtooth');
         case 21:
             const duo = new fx_oscillator();
-            var current_oscillator = duo;
+            current_oscillator = duo;
             oscillators.push(duo); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('duosynth');
             current_oscillator.setMelody('duosynth');
@@ -793,10 +779,10 @@ function scale(number, inMin, inMax, outMin, outMax) { //mapping function
 }
 
 //for wetness
-const wet_inMin = 0;
-const wet_inMax = 1;
-const wet_outMin = 0;
-const wet_outMax = 100;
+wet_inMin = 0;
+wet_inMax = 1;
+wet_outMin = 0;
+wet_outMax = 100;
 
 function knob_initialize(knob, elem, side) {
     console.log(side);
@@ -924,9 +910,9 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(440);
                 break;
             case "noiseIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty("valMin", -24); //wetness
+                knob.setProperty("valMax", 0);
+                knob.setValue(-6);
                 break;
             case "freqenvIn":
                 knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
@@ -1165,7 +1151,7 @@ function new_knob(elem, side) {
                     current_oscillator.osc.frequency.value = value;
                     break;
                 case "noiseIn":
-                    //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.osc.volume.value = value;
                     break;
                 case "freqenvIn":
                     //current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
