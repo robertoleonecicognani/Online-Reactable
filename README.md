@@ -25,16 +25,23 @@ The oscillators initiates the melody with the timber of a chosen synthesiser, It
 
 Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.
 The left knob increases the harmonics of the wave, and for Duo Synth it increases the vibrato speed.
-The right knob regulates the volume of the sound.
+The right knob regulates the volume of the sound.<br>
+
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/oscillators.png?raw=true)
 
 ## Filters
 
 Filters lets us alter the frequency composition of the sound. There are 3 filter definitions in the project:
 -**low, high** and **band pass filters.**
-The left knob controls the Q parameter. Normally this only controls the When this parameter is very high very fun stuff happens! The Right knob controls the cut-off frequency and in the case of band pass, it controls the central frequency of the filter.
+The left knob controls the Q parameter. Normally this only controls the When this parameter is very high very fun stuff happens! The Right knob controls the cut-off frequency and in the case of band pass, it controls the central frequency of the filter.<br>
+
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/filters.png?raw=true)
 
 ## Effects 
-Effect buttons enable the user to change and alter the sound by cascading different effects together. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.
+Effect buttons enable the user to change and alter the sound by cascading different effects together. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.<br>
+
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/effects.png?raw=true)
+<br>
 
 #### &nbsp;&nbsp;Every effects' left knob:<br> <br>
 Distortion: Distortion level<br>
@@ -51,6 +58,7 @@ Autofilter: Frequency of the autofilter<br>
 Flanger: Delay time<br>
 Tremolo: Rate of the effect<br>
 Fatsynth: Spread of each oscillator <br>
+
 
 #### &nbsp;&nbsp;Some interesting example usages of effects:<br><br>
 Pitchshift: The user can set the wetness to 50% and set the interval which creates the sensation of chords.<br>
