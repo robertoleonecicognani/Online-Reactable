@@ -6,8 +6,8 @@ The Online Reactable is the recreation of a reactable on a web page that allows 
 The original Reactable is an electronical musical instrument that lets the user create music by choosing buttons and putting them on an electronic table whose surface is a touch screen to change the effect parameters. Objects of oscillators and effects are selected and moved to generate a sound pattern, emulating the behavior of an analogue synthesizer. Parameters can be changed to obtain different kind of results and usually the production of music is accompanied by light effects. <br>
 
 Our goal was to implement the physical Reactable on a web page so that it is more portable and accessible to all. The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano. <br><br>
-You can find a web-page version of the project [here!](onlinereactable.surge.sh "s")
-
+You can find a web-page version of the project [here!] (https://onlinereactable.surge.sh "s")
+## [Codepen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
 
 ## How do you use it? 
 The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. It is possible to include these buttons into the interface by clicking on them and connecting them to create interesting combinations.
