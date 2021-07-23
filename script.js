@@ -872,7 +872,7 @@ function knob_initialize(knob, elem, side) {
             case "chebIn":
                 knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
                 knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
-                knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setValue(scale(50, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "wahIn":
                 knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
