@@ -125,6 +125,9 @@ contains the main js file, with all the functions and dependencies components
 - [**jQuery**]Library that facilitates communication between html and JS and is optimal for event handling and animation.
 
 ## [Our presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
+## [DEMO VIDEO!](https://youtu.be/J2Nzjh6Q07c "s")
+
+©
 
 ## Authors
 Umut Fidan<br>
