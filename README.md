@@ -58,15 +58,17 @@ Phaser: Setting the frequency of the phaser so high that the streo effect become
 
 ## Envelope Regulator
 The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control and visualize the ADSR parameters on the fly. We used this pen from the internet as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
 
 ## Movement and connecting lines
 To obtain sound in output the user must create an eventual connection between the oscillator buttons and the output node, located at the very center of the workspace.
 Every button is provided with connection nodes from which a line can be drawn. Oscillator nodes have one node for output while filters and effects have one input and one output. Creating a connection between buttons is easy: one must click on the output node of the first button and subsequently click the input node of the button to which the connection should arrive. To break the connection, it is enough to click again on the output node from which the line was created and the connection will vanish.
 
+
 ## Making music
 If the user wishes to hear a melody with the unaltered sound from the oscillator he must connect the corresponding button directly to the output node, otherwise they can connect it to an effect and have this last one be connected to the general output. It is possible to have multiple in effects in cascade.
 The user has control over several factors that include oscillator types, filters, and effects, and can combine and arrange them to obtain musical outputs with different sonic characteristics. The Web React table serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.
-<img align="left" src="readMeImages/connections.png"  width="50%" style="margin-left:5px; margin-bottom:10px">
+<img align="left" src="readMeImages/connections.png"  width="200%" >
 
 ## How is Audio Created?
 We used Tone.js, for effects, timing the melody, and Audio Context handling [ * ](https://tonejs.github.io/)
@@ -90,9 +92,10 @@ Conversely, when a line is destroyed or the button is destroyed, every audio con
 Tone.js ‘disconnect’ method is used [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
 ## Knobs 
-We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect. 
-[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
+We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect. [ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
 
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/knob.png?raw=true)<br>
+<br>
 
 ## Files
 _Web Reactable_ is composed of:
