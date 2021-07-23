@@ -36,7 +36,7 @@ The left knob controls the Q parameter. Normally this only controls the When thi
 ## Effects 
 Effect buttons enable the user to change and alter the sound by cascading different effects together. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.
 
-&nbsp;&nbsp;Every effects' left knob:<br> <br>
+#### &nbsp;&nbsp;Every effects' left knob:<br> <br>
 Distortion: Distortion level<br>
 Phaser: Frequency of the panning effect<br>
 Vibrato: Speed of the vibrato<br>
@@ -52,7 +52,7 @@ Flanger: Delay time<br>
 Tremolo: Rate of the effect<br>
 Fatsynth: Spread of each oscillator <br>
 
-&nbsp;&nbsp;Some interesting example usages of effects:<br><br>
+#### &nbsp;&nbsp;Some interesting example usages of effects:<br><br>
 Pitchshift: The user can set the wetness to 50% and set the interval which creates the sensation of chords.<br>
 Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
@@ -68,7 +68,6 @@ Every button is provided with connection nodes from which a line can be drawn. O
 ## Making music
 If the user wishes to hear a melody with the unaltered sound from the oscillator he must connect the corresponding button directly to the output node, otherwise they can connect it to an effect and have this last one be connected to the general output. It is possible to have multiple in effects in cascade.
 The user has control over several factors that include oscillator types, filters, and effects, and can combine and arrange them to obtain musical outputs with different sonic characteristics. The Web React table serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
-
 
 <img align="left" src="readMeImages/connections.png"  width="200%" >
 
@@ -86,8 +85,8 @@ The model is checked constantly if an oscillator is present.
 If yes, the oscillator and its type is defined and the melody is initiated.
 After each connection, the function identify the button id’s and the audio context objects relating to those id’s. 
 Connects those id’s until it reaches to the output node.
-Tone.js ‘connect’ method is used to handle the audio context connections. [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)
-![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)<br>
+Tone.js ‘connect’ method is used to handle the audio context connections. [ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)
 <br>
 
 ## Audio Context Handling, Destroy lines
