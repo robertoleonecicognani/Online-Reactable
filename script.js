@@ -1,6 +1,7 @@
-import * as Tone from 'tone'
+//import * as Tone from 'tone'
 
-const pureknob = require('./pureknob')
+//const pureknob = require('./pureknob')
+import * as pureknob from './pureknob.js'
 
 
 var fat_spread = 40; //fatsynth
@@ -241,7 +242,7 @@ class fx_oscillator {
 
 const endCont = document.getElementById("dest_cont");
 
-keys = document.querySelectorAll(".keys");
+const keys = document.querySelectorAll(".keys");
 keys.forEach((key, index) => key.classList.add("node"));
 
 const main_out = document.getElementById("main_out");
@@ -249,13 +250,13 @@ const main_out_node = document.getElementById("main_out_node");
 input_assignment(main_out);
 main_out_node.classList.add("node");
 
-nodes = document.querySelectorAll(".node");
-num_nodes = nodes.length;
+const nodes = document.querySelectorAll(".node");
+const num_nodes = nodes.length;
 main_out.dataset.index = num_nodes - 1;
 
-model = Array(num_nodes).fill(null);
+var model = Array(num_nodes).fill(null);
 
-buttons_eff = document.querySelectorAll(".button_effect");
+var buttons_eff = document.querySelectorAll(".button_effect");
 buttons_eff.forEach(make_inactive);
 
 function make_inactive(button) {
@@ -265,9 +266,9 @@ function make_inactive(button) {
 keys.forEach((key, index) => click_assignment(key, index, key.parentNode));
 
 function click_assignment(key, index, source) {
-    on = key.classList.toggle("waiting");
+    const on = key.classList.toggle("waiting");
     if (on) {
-        source = key.parentNode;
+        const source = key.parentNode;
         key.onclick = function () {
             teleport_in(key, index, source);
         };
@@ -306,7 +307,7 @@ function teleport_in(key, index, source) {
     else {
         const knob1 = new_knob(new_key, "left");
         const knob2 = new_knob(new_key, "right");
-        pair = new button_and_knobs(key, knob1, knob2);
+        const pair = new button_and_knobs(key, knob1, knob2);
         pair_array.push(pair);
     }
 }
@@ -489,20 +490,20 @@ function create_line(output, input) {
 //oscillators.push(p); //define an object for the oscillator and start connecting stuff
 
 function check_connection(i) {
-    index = model[i]; //temp variable for connections
+    var index = model[i]; //temp variable for connections
     //console.log(index);
-    is_oscillator = check_if_oscillator(i); //check if the difference is an "oscillator to something else" connection.
+    const is_oscillator = check_if_oscillator(i); //check if the difference is an "oscillator to something else" connection.
     //if (is_oscillator) {//if an oscillator was chosen time to connect stuff until the end of chain or master
     // current_oscillator.setMelody();
     //}
-    a = choose_fx(i); //gives the current oscillators fx object, the sender
-    b = choose_fx(model[i]); //gives the current oscillators fx object, the receiver
+    var a = choose_fx(i); //gives the current oscillators fx object, the sender
+    var b = choose_fx(model[i]); //gives the current oscillators fx object, the receiver
     console.log(a);
     a.connect(b); //connection made
 
-    stop_flag = 0;
+    var stop_flag = 0;
     while (stop_flag == 0) {
-        is_null = check_if_null(model[index]); //check if the connection is also connected to something
+        const is_null = check_if_null(model[index]); //check if the connection is also connected to something
         if (is_null) {
             //console.log(is_null);
             stop_flag = 1; //if there is no connection dont do anything else
@@ -679,7 +680,7 @@ function remove_line(line, index) {
         nodes[index2].id
     );
     line.remove(); //removing the drawing
-    ss = model[index];
+    const ss = model[index];
     //console.log(ss);
     remove_check_connection(index, ss); //removing the sound connection
     model[index] = null; //making the element null
@@ -687,8 +688,8 @@ function remove_line(line, index) {
 }
 
 function remove_check_connection(index, what) {
-    a = choose_fx(index); //gives the current oscillators fx object, the sender
-    b = choose_fx(what); //gives the current oscillators fx object, the receiver
+    const a = choose_fx(index); //gives the current oscillators fx object, the sender
+    const b = choose_fx(what); //gives the current oscillators fx object, the receiver
     a.disconnect(b);
     //remove_check_if_oscillator(index);  //have to think
 
@@ -724,7 +725,7 @@ function remove_check_if_oscillator(i) {
             current_oscillator.setMelody('sawtooth');
         case 21:
             const duo = new fx_oscillator();
-            current_oscillator = duo;
+            var current_oscillator = duo;
             oscillators.push(duo); //define an object for the oscillator and start connecting stuff
             current_oscillator.setOsc('duosynth');
             current_oscillator.setMelody('duosynth');
@@ -792,10 +793,10 @@ function scale(number, inMin, inMax, outMin, outMax) { //mapping function
 }
 
 //for wetness
-wet_inMin = 0;
-wet_inMax = 1;
-wet_outMin = 0;
-wet_outMax = 100;
+const wet_inMin = 0;
+const wet_inMax = 1;
+const wet_outMin = 0;
+const wet_outMax = 100;
 
 function knob_initialize(knob, elem, side) {
     console.log(side);
