@@ -13,5 +13,3 @@ The first one is the bigger one and has a logo (“Cantus Firmus”) above. It a
 The switch button is the arrow in a green box, at the right of the previous one. Clicking on it, it is possible to change the current “Cantus Firmus” with another one in the set. 
 Finally, the four buttons under the previous two are related to the counterpoint. The user can choose intuitively the species of the counterpoint which he wants to associate to the Cantus Firmus and click the corresponding button. Obviously button 1 is related to the first species, button 2 to the second, button 3 to the third and button 4 to the fourth. When a button is cliked it gets active and starts playing the counterpoint. Active buttons become red, clicking again on them they turn black and stop playing. Only one button can be active at the time, which means that if a button is clicked after another one, the previous stops working and the species of counterpoint produces changed. 
 
-
-![image](https://user-images.githubusercontent.com/82036901/127169867-9383a5a1-363f-4277-b1af-b489d2185b0c.png)
