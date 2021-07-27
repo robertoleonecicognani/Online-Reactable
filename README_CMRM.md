@@ -6,6 +6,10 @@ The regular mode of Reactable plays a melody founded by us and has been used for
 
 Our goal was to combine the ancient art of Counterpoint and the modern Reactable with modern effects, to produce a new experience for the user. The project has been developed for the course of Computer Music Representations and Models for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano.
 
+### [Our Project!](https://codepen.io/umutus/full/PomQKbY "s")
+### [Our Presentation!](https://docs.google.com/presentation/d/1MoYUUQgi9hw5hNLMDHu8yOKbb-zAymc9tvgKWwkR_yY/edit#slide=id.p1 "s")
+
+
 ## How do you use it? 
 ![Screenshot (590)](https://user-images.githubusercontent.com/82660558/127182736-fc64d30c-8ff9-4313-b5a0-70e92a292118.png)
 
