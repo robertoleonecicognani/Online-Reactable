@@ -11,7 +11,11 @@ The section reguarding the functionality of choosing a Cantus Firmus and generat
 -a switch button
 -four buttons enumerated from 1 to 4
 It is important to underline that, with respect to most of the other objects, these ones are fixed and do not need to move, be linked between them or to the output node to apply their effect. Like the envelope regulator, their function is combined with the sound, and its alteration, produced by sin waves, filters and effects. 
+
+
 ![Screenshot (593)](https://user-images.githubusercontent.com/82660558/127183126-6eb072e9-84c1-4e9d-91cc-8226d4739923.png)
+
+
 
 The first one is the bigger one and has a logo (“Cantus Firmus”) above. It allows to reproduce a Cantus Firmus and acts like a play button: clicking on it a fixed melody from the Online Reactable set starts playing. When this happen the button is active and from blue turns to red. 
 The switch button is the arrow in a green box, at the right of the previous one. Clicking on it, it is possible to change the current “Cantus Firmus” with another one in the set. 
