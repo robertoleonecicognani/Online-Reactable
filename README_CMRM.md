@@ -4,6 +4,8 @@ The Online Reactable has a set of Cantus Firmus among which the user can choose 
 Our goal was to improve the espierence of the user in this fusion between the ancient tecnique of Cantus Firmus and Counterpoints and the modern Reactable. The project has been developed for the course of Computer Music Representations and Models for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano.
 
 ## How do you use it? 
+![Screenshot (590)](https://user-images.githubusercontent.com/82660558/127182736-fc64d30c-8ff9-4313-b5a0-70e92a292118.png)
+
 The section reguarding the functionality of choosing a Cantus Firmus and generate a counterpoint for it is underneath the Envelope Regulator and consists in the following objects: 
 -a Cantus Firmus button, 
 -a switch button
