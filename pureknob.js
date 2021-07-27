@@ -1139,5 +1139,4 @@
 	}
 
 	return new PureKnob();
-}));
-
+}))

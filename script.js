@@ -1,6 +1,15 @@
 const pureknob = require('./pureknob')
 
 
+import { counterpoint_1, counterpoint_2, counterpoint_3, counterpoint_4 } from './counterpoint.js'
+
+
+
+
+
+
+
+
 
 var fat_spread = 40; //fatsynth
 var env = {
@@ -9,7 +18,50 @@ var env = {
     sustain: 0.1,
     release: 1
 };
-//tremolo = new Tone.Tremolo(9, 0.75).start(); //doesnt work with fx class not sure why
+var cf_flag = false; //toggle when a cf button is pressed
+//counter_osc.triggerAttackRelease("g4", "8n");
+var chant_ar = ["C3", "F3", "E3", "G3", "D3", "E3", "D3", "C3"];
+/*var chant_ar = [
+  "C3",
+  "D3",
+  "F3",
+  "E3",
+  "F3",
+  "G3",
+  "A3",
+  "G3",
+  "F3",
+  "E3",
+  "D3",
+  "C3"
+];*/
+//counter_ar=claudioprogram(chant_ar);//apply to all switch buttons cases;
+//var chant_arr =["C3","F3","E3","G3","D3","E3","D3","C3"];
+var counter_ar = counterpoint_1(chant_ar);
+
+/*var counter_ar = [
+  "g4",
+  "d4",
+  "c4",
+  "g4",
+  "f4",
+  "e4",
+  "c4",
+  "b3",
+  "d4",
+  "c4",
+  "b3",
+  "c4"
+];*/
+var time_interval = 1;
+var counter_time_interval = time_interval / 2;
+var counter_length = 1;
+var now_response = Tone.now();
+var last_time_response = now_response;
+var species_flag = -1;
+var start_offset = 0;
+var counter_ar_times;
+
 var flag = 0;
 var frequency = 440;
 var oscillators = []; //create a list that stores all the oscillators
@@ -18,7 +70,6 @@ var times = 0;
 var intervalID;
 var old_model; //[null,null,null,null,null,null,null,null,null,null,null,null,null];
 //null array for comparison, change old model at the end of each check_connection!
-
 
 class FX extends Tone.ToneAudioNode {
     constructor(options) {
@@ -79,7 +130,6 @@ class fx_oscillator {
             bypass: false // initial bypass value
         });
         this.fx2 = new Tone.Phaser();
-
         this.fx3 = new FX({
             effect: Tone.Vibrato,
             options: { frequency: 5, depth: 0.3, wet: 1 },
@@ -112,7 +162,6 @@ class fx_oscillator {
         });
         this.fx9 = new Tone.AutoPanner();
         this.fx9.start();
-
         this.fx10 = new FX({
             effect: Tone.PingPongDelay,
             options: { delaytime: "8n", feedback: 0.6 }, //wet: 0.5 },
@@ -167,6 +216,7 @@ class fx_oscillator {
         //this.freqEnv.connect(this.osc.frequency);
     }
     setOsc(osc_type) {
+        this.counter_osc = new Tone.Synth().toMaster();
         switch (osc_type) {
             case "sine":
                 this.osc = new Tone.Synth(); //missing start();
@@ -196,46 +246,137 @@ class fx_oscillator {
                 break;
             case "fatsynth":
                 this.osc = new Tone.FatOscillator(frequency, "sine", fat_spread);
-                //this.osc.oscillator.type = "fat";
-                //this.osc.oscillator.start();
                 break;
             default:
                 this.osc = new Tone.Synth();
         }
     }
     setMelody(osc_type) {
-        var time_interval = 0.5;
+        //var time_interval = 0.5;
         if (osc_type == "noise" || osc_type == "fatsynth") {
             this.loopA = new Tone.Loop((time) => { }, "16n").start(0);
             this.osc.start();
             //this.freqEnv.triggerAttackRelease();
         } else {
-            //this.freqEnv.connect(this.osc.frequency);
-            //this.osc.triggerAttackRelease("C4", "8n");
-            //this.freqEnv.triggerAttackRelease();
-            Tone.Transport.start();
-            this.loopA = new Tone.Loop((time) => {
-                const now = Tone.now();
-                this.osc.triggerAttackRelease("D3", "16n", now);
-                this.osc.triggerAttackRelease("E4", "8n", now + time_interval);
-                this.osc.triggerAttackRelease("G4", "8n", now + 2 * time_interval);
-                this.osc.triggerAttackRelease("E5", "8n", now + 3 * time_interval);
-                this.osc.triggerAttackRelease("G5", "8n", now + 4 * time_interval);
-                this.osc.triggerAttackRelease("G4", "8n", now + 5 * time_interval);
-                this.osc.triggerAttackRelease("E5", "8n", now + 6 * time_interval);
-                this.osc.triggerAttackRelease("F5", "8n", now + 7 * time_interval);
-                this.osc.triggerAttackRelease("E5", "8n", now + 8 * time_interval);
-                this.osc.triggerAttackRelease("D5", "8n", now + 9 * time_interval);
-                this.osc.triggerAttackRelease("D4", "8n", now + 10 * time_interval);
-                this.osc.triggerAttackRelease("D5", "8n", now + 11 * time_interval);
-                this.osc.triggerAttackRelease("D4", "8n", now + 12 * time_interval);
-            }, "1n").start(0);
-            Tone.Transport.bpm.value = 30;
+            if (cf_flag) {
+                this.loopA = new Tone.Loop((time) => {
+                    const now = Tone.now();
+                    this.osc.triggerAttackRelease(chant_ar[0], "8n", now);
+                    this.osc.triggerAttackRelease(chant_ar[1], "8n", now + time_interval);
+                    this.osc.triggerAttackRelease(
+                        chant_ar[2],
+                        "8n",
+                        now + 2 * time_interval
+                    );
+                    this.osc.triggerAttackRelease(
+                        chant_ar[3],
+                        "8n",
+                        now + 3 * time_interval
+                    );
+                    this.osc.triggerAttackRelease(
+                        chant_ar[4],
+                        "8n",
+                        now + 4 * time_interval
+                    );
+                    this.osc.triggerAttackRelease(
+                        chant_ar[5],
+                        "8n",
+                        now + 5 * time_interval
+                    );
+                    this.osc.triggerAttackRelease(
+                        chant_ar[6],
+                        "8n",
+                        now + 6 * time_interval
+                    );
+                    this.osc.triggerAttackRelease(
+                        chant_ar[7],
+                        "8n",
+                        now + 7 * time_interval
+                    );
+                }, "1n").start(0);
+                if (species_flag !== -1) { //if species flag is not set yet do not play the response
+                    if (species_flag == 1) {
+                        counter_time_interval = time_interval;
+                        start_offset = 0;
+                    } else if (species_flag == 2) {
+                        counter_time_interval = time_interval / 2;
+                        start_offset = 0;
+                    } else if (species_flag == 3) {
+                        counter_time_interval = time_interval / 4;
+                        start_offset = 0;
+                    } else if (species_flag == 4) {
+                        counter_time_interval = time_interval / 1;
+                        start_offset = "20n";
+                    } else {
+                        throw "what species is this??";
+                    }
+                    this.loopB = new Tone.Loop((time) => {
+                        console.log("loop B start");
+                        counter_length = 1;
+                        let ii = 0;
+                        last_time_response = Tone.now();
+                        console.log(last_time_response);
+                        while (ii < counter_ar.length) {
+                            //if(species_flag == 4 && ii==counter_ar.length-1)
+                            //{}
+                            this.counter_osc.triggerAttackRelease(
+                                counter_ar[ii],
+                                "8n",
+                                last_time_response
+                            );
+                            last_time_response = calculate_next_time(
+                                last_time_response,
+                                counter_length,
+                                counter_time_interval
+                            ); //given the length of each note,calculates last time
+                            ii = ii + 1;
+                        }
+                    }, "1n").start(start_offset);
+                }
+                Tone.Transport.start();
+                Tone.Transport.bpm.value = 25;
+
+            } else {
+                Tone.Transport.start();
+                this.loopA = new Tone.Loop((time) => {
+                    const now = Tone.now();
+                    this.osc.triggerAttackRelease("D3", "8n", now);
+                    this.osc.triggerAttackRelease("E4", "8n", now + time_interval);
+                    this.osc.triggerAttackRelease("G4", "8n", now + 2 * time_interval);
+                    this.osc.triggerAttackRelease("E5", "8n", now + 3 * time_interval);
+                    this.osc.triggerAttackRelease("G5", "8n", now + 4 * time_interval);
+                    this.osc.triggerAttackRelease("G4", "8n", now + 5 * time_interval);
+                    this.osc.triggerAttackRelease("E5", "8n", now + 6 * time_interval);
+                    this.osc.triggerAttackRelease("F5", "8n", now + 7 * time_interval);
+                    this.osc.triggerAttackRelease("E5", "8n", now + 8 * time_interval);
+                    this.osc.triggerAttackRelease("D5", "8n", now + 9 * time_interval);
+                    this.osc.triggerAttackRelease("D4", "8n", now + 10 * time_interval);
+                    this.osc.triggerAttackRelease("D5", "8n", now + 11 * time_interval);
+                    this.osc.triggerAttackRelease("D4", "8n", now + 12 * time_interval);
+                }, "1n").start(0);
+                Tone.Transport.bpm.value = 30;
+            }
         }
     }
     //osc.triggerAttackRelease("C4", "8n");
     // audio signal is constantly passed through this node,
     // but processed by effect only, if bypass prop is set to `false`
+}
+
+function calculate_next_time(last_time, counter_length, counter_time_interval) {
+    if (counter_length == 1) {
+        //whole note
+        last_time = last_time + counter_time_interval;
+        return last_time;
+    } else if (counter_length == 2) {
+        last_time = last_time + counter_time_interval / 2;
+        return last_time;
+    } else if (counter_length == 4) {
+        last_time = last_time + counter_time_interval / 4;
+        return last_time;
+    } else {
+        throw "what counter_length is this???";
+    }
 }
 
 const endCont = document.getElementById("dest_cont");
@@ -301,8 +442,9 @@ function teleport_in(key, index, source) {
         input.remove();
     }
     console.log(new_key.id);
-    if (new_key.id == "noiseIn") { const knob1 = new_knob(new_key, "left"); }
-    else {
+    if (new_key.id == "noiseIn") {
+        const knob1 = new_knob(new_key, "left");
+    } else {
         const knob1 = new_knob(new_key, "left");
         const knob2 = new_knob(new_key, "right");
         pair = new button_and_knobs(key, knob1, knob2);
@@ -320,7 +462,8 @@ class button_and_knobs {
     }
 }
 
-function teleport_out(key, index, source) { //lines management
+function teleport_out(key, index, source) {
+    //lines management
     const out_index = model.indexOf(index);
     if (out_index != -1) {
         const out_key = nodes[out_index];
@@ -468,18 +611,12 @@ function create_line(output, input) {
 
     const index1 = Number(output.dataset.index);
     const index2 = Number(input.dataset.index);
-    //console.log("model:",model);
-    //console.log("old model:",old_model);
     old_model = model;
     model[index1] = index2;
-    //old_model = [null,null,null,null,null,null,null,null,null,null,null,null,null];//null array for comparison, change old model at the end of each check_connection! this used to work for three buttons? its wrong tho
     console.log(
         "Connection between " + nodes[index1].id + " and " + nodes[index2].id
     );
     check_connection(index1);
-    //console.log(old_model);
-    //old_model = model;
-    //console.log(old_model);
 }
 
 function check_connection(i) {
@@ -500,7 +637,8 @@ function check_connection(i) {
         if (is_null) {
             //console.log(is_null);
             stop_flag = 1; //if there is no connection dont do anything else
-        } else { //it's not null
+        } else {
+            //it's not null
             //console.log(is_null);
             a = choose_fx(model[index]); //gives the current oscillators fx object, the sender
             b = choose_fx(model[model[index]]); //gives the current oscillators fx object, the receiver
@@ -522,8 +660,8 @@ function check_if_oscillator(i) {
             const s = new fx_oscillator();
             current_oscillator = s;
             oscillators.push(s); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('sine');
-            current_oscillator.setMelody('sine');
+            current_oscillator.setOsc("sine");
+            current_oscillator.setMelody("sine");
             console.log(current_oscillator.osc.envelope.attack);
             current_oscillator.osc.envelope.attack = 0.2;
             console.log(current_oscillator.osc.envelope.attack);
@@ -532,43 +670,43 @@ function check_if_oscillator(i) {
             const sq = new fx_oscillator();
             current_oscillator = sq;
             oscillators.push(sq); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('square');
-            current_oscillator.setMelody('square');
+            current_oscillator.setOsc("square");
+            current_oscillator.setMelody("square");
             return true;
         case 2:
             const tr = new fx_oscillator();
             current_oscillator = tr;
             oscillators.push(tr); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('triangle');
-            current_oscillator.setMelody('triangle');
+            current_oscillator.setOsc("triangle");
+            current_oscillator.setMelody("triangle");
             return true;
         case 3:
             const saw = new fx_oscillator();
             current_oscillator = saw;
             oscillators.push(saw); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('sawtooth');
-            current_oscillator.setMelody('sawtooth');
+            current_oscillator.setOsc("sawtooth");
+            current_oscillator.setMelody("sawtooth");
             return true;
         case 21:
             const duo = new fx_oscillator();
             current_oscillator = duo;
             oscillators.push(duo); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('duosynth');
-            current_oscillator.setMelody('duosynth');
+            current_oscillator.setOsc("duosynth");
+            current_oscillator.setMelody("duosynth");
             return true;
         case 22:
             const fat = new fx_oscillator();
             current_oscillator = fat;
             oscillators.push(fat); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('fatsynth');
-            current_oscillator.setMelody('fatsynth');
+            current_oscillator.setOsc("fatsynth");
+            current_oscillator.setMelody("fatsynth");
             return true;
         case 23:
             const noise = new fx_oscillator();
             current_oscillator = noise;
             oscillators.push(noise); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('noise');
-            current_oscillator.setMelody('noise');
+            current_oscillator.setOsc("noise");
+            current_oscillator.setMelody("noise");
             return true;
         default:
             // other buttons are not oscillators
@@ -586,7 +724,6 @@ function check_if_null(num) {
 var masterflag = 0;
 
 function choose_fx(i) {
-
     //console.log(nodes[i]);
     switch (i) {
         case 0:
@@ -609,7 +746,7 @@ function choose_fx(i) {
             return current_oscillator.fx2; //what is this icon?
         case 9:
             //return tremolo;
-            return current_oscillator.fx18;//doesnt work with fx?
+            return current_oscillator.fx18; //doesnt work with fx?
         case 10:
             return current_oscillator.fx4;
         case 11:
@@ -678,57 +815,66 @@ function remove_check_connection(index, what) {
     a = choose_fx(index); //gives the current oscillators fx object, the sender
     b = choose_fx(what); //gives the current oscillators fx object, the receiver
     a.disconnect(b);
-    //remove_check_if_oscillator(index);  //have to think
+    remove_check_if_oscillator(index);
 }
 
-//have to think
 function remove_check_if_oscillator(i) {
-    console.log(i);
     switch (i) {
         case 0:
-            oscillators.pop(); //define an object for the oscillator and start connecting stuff
+            stop_counter_osc();
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
             current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 1:
-            const sq = new fx_oscillator();
-            //sq.fx1.effect.distortion = 0.8;
-            current_oscillator = sq;
-            oscillators.push(sq); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('square');
-            current_oscillator.setMelody('square');
+            stop_counter_osc();
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 2:
-            const tr = new fx_oscillator();
-            //tr.fx1.effect.distortion = 0.8;
-            current_oscillator = tr;
-            oscillators.push(tr); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('triangle');
-            current_oscillator.setMelody('triangle');
+            stop_counter_osc();
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 3:
-            const saw = new fx_oscillator();
-            //saw.fx1.effect.distortion = 0.8;
-            current_oscillator = saw;
-            oscillators.push(saw); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('sawtooth');
-            current_oscillator.setMelody('sawtooth');
+            stop_counter_osc();
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 21:
-            const duo = new fx_oscillator();
-            current_oscillator = duo;
-            oscillators.push(duo); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('duosynth');
-            current_oscillator.setMelody('duosynth');
+            stop_counter_osc();
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 22:
-            const fat = new fx_oscillator();
-            current_oscillator = fat;
-            oscillators.push(fat); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('fatsynth');
-            current_oscillator.setMelody('fatsynth');
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
         case 23:
-            const noise = new fx_oscillator();
-            current_oscillator = noise;
-            oscillators.push(noise); //define an object for the oscillator and start connecting stuff
-            current_oscillator.setOsc('noise');
-            current_oscillator.setMelody('noise');
-        default:
-        // other buttons are not oscillators
+            oscillators.pop(); //define an object for the oscillator and start connecting stuff ??
+            current_oscillator = oscillators[oscillators.length - 1];
+            break;
+        default: // other buttons are not oscillators
+    }
+}
+
+function stop_counter_osc() {
+    //stopping the counterpoint stuff
+    //console.log(typeof current_oscillator.loopB);
+    if (typeof current_oscillator.loopB !== 'undefined') {
+        current_oscillator.loopB.stop(Tone.now());
+        current_oscillator.counter_osc.oscillator.volume.value = -90;
+        current_oscillator.counter_osc.oscillator.stop(Tone.now());
+    }
+    if (typeof current_oscillator.loopA !== 'undefined') {
+        current_oscillator.loopA.stop(Tone.now());
+        current_oscillator.osc.oscillator.volume.value = -90;
+        current_oscillator.osc.oscillator.stop(Tone.now());
+    }
+    if (cf_flag == true) {
+        //current_oscillator.loopB.stop(Tone.now());
+        //current_oscillator.counter_osc.oscillator.volume.value=-90;
+        //current_oscillator.counter_osc.oscillator.stop(Tone.now());
+        //current_oscillator.loopB.stop(Tone.now());
     }
 }
 
@@ -774,8 +920,9 @@ function moveLine(x1, y1, x2, y2, $line) {
 }
 
 //KNOBS
-function scale(number, inMin, inMax, outMin, outMax) { //mapping function
-    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+function scale(number, inMin, inMax, outMin, outMax) {
+    //mapping function
+    return ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
 
 //for wetness
@@ -786,7 +933,8 @@ wet_outMax = 100;
 
 function knob_initialize(knob, elem, side) {
     console.log(side);
-    if (side == "left") { //wetness stuff
+    if (side == "left") {
+        //wetness stuff
         //console.log(knob._properties.key_id_id);
         switch (knob._properties.key_id_id) {
             case "sinIn":
@@ -795,108 +943,198 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(0);
                 break;
             case "squareIn":
-                knob.setProperty("valMin", -12);//volume
+                knob.setProperty("valMin", -12); //volume
                 knob.setProperty("valMax", 0);
                 knob.setValue(0);
                 break;
             case "sawIn":
-                knob.setProperty("valMin", -12);//volume
+                knob.setProperty("valMin", -12); //volume
                 knob.setProperty("valMax", 0);
                 knob.setValue(0);
                 break;
             case "triangIn":
-                knob.setProperty("valMin", -12);//volume
+                knob.setProperty("valMin", -12); //volume
                 knob.setProperty("valMax", 0);
                 knob.setValue(0);
                 break;
             case "lpfIn":
-                knob.setProperty("valMin", 0);//attenuation volume
+                knob.setProperty("valMin", 0); //attenuation volume
                 knob.setProperty("valMax", 100);
                 knob.setValue(1);
                 break;
             case "hpfIn":
-                knob.setProperty("valMin", 0);//attenuation volume
+                knob.setProperty("valMin", 0); //attenuation volume
                 knob.setProperty("valMax", 100);
                 knob.setValue(1);
                 break;
             case "bpfIn":
-                knob.setProperty("valMin", 0);//attenuation volume
+                knob.setProperty("valMin", 0); //attenuation volume
                 knob.setProperty("valMax", 100);
                 knob.setValue(1);
                 break;
             case "distortIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "skullIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "tremoloIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "flangerIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //flanger level
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //flanger level
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "vibratoIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "phaserIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "reverbIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "chorusIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "bitcrusherIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "chebIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(50, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "wahIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "pannerIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "pingpongdelayIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "pitchshiftIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "auto-filterIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "duosynthIn":
@@ -915,15 +1153,20 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(-6);
                 break;
             case "freqenvIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //wetness
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //wetness
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(100, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             default:
                 throw "what button is this?? Knob error";
         }
-    }
-    else if (side == "right") {
+    } else if (side == "right") {
         switch (knob._properties.key_id_id) {
             case "sinIn":
                 knob.setProperty("valMin", 0); //partial
@@ -931,43 +1174,55 @@ function knob_initialize(knob, elem, side) {
                 knob.setValue(0);
                 break;
             case "squareIn":
-                knob.setProperty("valMin", 0);//partial
+                knob.setProperty("valMin", 0); //partial
                 knob.setProperty("valMax", 6);
                 knob.setValue(0);
                 break;
             case "sawIn":
-                knob.setProperty("valMin", 0);//partial
+                knob.setProperty("valMin", 0); //partial
                 knob.setProperty("valMax", 6);
                 knob.setValue(0);
                 break;
             case "triangIn":
-                knob.setProperty("valMin", 0);//partial
+                knob.setProperty("valMin", 0); //partial
                 knob.setProperty("valMax", 6);
                 knob.setValue(0);
                 break;
             case "lpfIn":
-                knob.setProperty("valMin", 100);//center freq
+                knob.setProperty("valMin", 100); //center freq
                 knob.setProperty("valMax", 2000);
                 knob.setValue(600);
                 break;
             case "hpfIn":
-                knob.setProperty("valMin", 100);//center freq
+                knob.setProperty("valMin", 100); //center freq
                 knob.setProperty("valMax", 2000);
                 knob.setValue(600);
                 break;
             case "bpfIn":
-                knob.setProperty("valMin", 100);//center freq
+                knob.setProperty("valMin", 100); //center freq
                 knob.setProperty("valMax", 2000);
                 knob.setValue(600);
                 break;
             case "distortIn": //has to change all these
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //distort level
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //distort level
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "skullIn":
-                knob.setProperty("valMin", scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)); //delay time
-                knob.setProperty("valMax", scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
+                knob.setProperty(
+                    "valMin",
+                    scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                ); //delay time
+                knob.setProperty(
+                    "valMax",
+                    scale(1, wet_inMin, wet_inMax, wet_outMin, wet_outMax)
+                );
                 knob.setValue(scale(0, wet_inMin, wet_inMax, wet_outMin, wet_outMax));
                 break;
             case "tremoloIn":
@@ -977,7 +1232,7 @@ function knob_initialize(knob, elem, side) {
                 break;
             case "flangerIn":
                 knob.setProperty("valMin", scale(0.01, 0.01, 1.2, 0, 100)); //flanger level
-                knob.setProperty("valMax", scale(2, 0.01, 1.2, 0, 100));//goes between 0.01 and 1.2 represented by 0 to 100
+                knob.setProperty("valMax", scale(2, 0.01, 1.2, 0, 100)); //goes between 0.01 and 1.2 represented by 0 to 100
                 knob.setValue(scale(0.25, 0.01, 1.2, 0, 100));
                 break;
             case "vibratoIn":
@@ -1052,8 +1307,9 @@ function knob_initialize(knob, elem, side) {
             default:
                 throw "what button is this?? Knob error";
         }
+    } else {
+        throw "what side is this?? Knob creation side error";
     }
-    else { throw "what side is this?? Knob creation side error"; }
 }
 
 function new_knob(elem, side) {
@@ -1074,7 +1330,8 @@ function new_knob(elem, side) {
     var listener = function (knob, value) {
         //console.log(knob._properties.key_id_id);
         //if(current osc exists) //define this or it will throw an error without a button
-        if (side == "left") { //WETNESS LEVELS //its on the right for some reason
+        if (side == "left") {
+            //WETNESS LEVELS //its on the right for some reason
             switch (knob._properties.key_id_id) {
                 case "sinIn":
                     current_oscillator.osc.volume.value = value;
@@ -1098,51 +1355,135 @@ function new_knob(elem, side) {
                     current_oscillator.fx15.effect.Q.value = value;
                     break;
                 case "distortIn":
-                    current_oscillator.fx1.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
-                    break;//wetness
+                    current_oscillator.fx1.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
+                    break; //wetness
                 case "skullIn":
                     //current_oscillator.fx1.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
-                    break;//wetness
+                    break; //wetness
                 case "tremoloIn":
-                    current_oscillator.fx18.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);//wetness
+                    current_oscillator.fx18.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    ); //wetness
                     //tremolo.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);//wetness
                     //console.log(tremolo.wet.value);
-                    break;//wetness
-                case "flangerIn"://delay effect 
-                    current_oscillator.fx17.effect.feedback.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    break; //wetness
+                case "flangerIn": //delay effect
+                    current_oscillator.fx17.effect.feedback.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "vibratoIn":
-                    current_oscillator.fx3.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx3.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "phaserIn":
-                    current_oscillator.fx2.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx2.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "reverbIn":
-                    current_oscillator.fx4.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx4.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "chorusIn":
-                    current_oscillator.fx5.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx5.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "bitcrusherIn":
-                    current_oscillator.fx6.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx6.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "chebIn":
-                    current_oscillator.fx7.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx7.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "wahIn":
-                    current_oscillator.fx8.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx8.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "pannerIn":
-                    current_oscillator.fx9.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx9.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "pingpongdelayIn":
-                    current_oscillator.fx10.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx10.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "pitchshiftIn":
-                    current_oscillator.fx11.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx11.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "auto-filterIn":
-                    current_oscillator.fx12.effect.wet.value = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx12.effect.wet.value = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "duosynthIn":
                     current_oscillator.osc.frequency.value = value;
@@ -1160,8 +1501,8 @@ function new_knob(elem, side) {
                     console.log(knob._properties.key_id_id);
                     throw "what button is this?? Knob error";
             }
-        }
-        else if (side == "right") { //EFFECT ALTER STUFF. on the left for some reason
+        } else if (side == "right") {
+            //EFFECT ALTER STUFF. on the left for some reason
             switch (knob._properties.key_id_id) {
                 case "sinIn":
                     current_oscillator.osc.oscillator.partialCount = value;
@@ -1185,7 +1526,13 @@ function new_knob(elem, side) {
                     current_oscillator.fx15.effect.frequency.value = value;
                     break;
                 case "distortIn": //same mapping with wetness bc coincidence
-                    current_oscillator.fx1.effect.distortion = scale(value, wet_outMin, wet_outMax, wet_inMin, wet_inMax);
+                    current_oscillator.fx1.effect.distortion = scale(
+                        value,
+                        wet_outMin,
+                        wet_outMax,
+                        wet_inMin,
+                        wet_inMax
+                    );
                     break;
                 case "skullIn":
                     break;
@@ -1194,8 +1541,14 @@ function new_knob(elem, side) {
                     //tremolo.frequency.value = value;
                     //console.log(tremolo.frequency.value)
                     break;
-                case "flangerIn"://delay effect 
-                    current_oscillator.fx17.effect.delayTime.value = scale(value, 100, 0, 0.01, 1.2);
+                case "flangerIn": //delay effect
+                    current_oscillator.fx17.effect.delayTime.value = scale(
+                        value,
+                        100,
+                        0,
+                        0.01,
+                        1.2
+                    );
                     console.log(current_oscillator.fx17.effect.delayTime.value);
                     break;
                 case "vibratoIn":
@@ -1246,9 +1599,9 @@ function new_knob(elem, side) {
                 default:
                     throw "what button is this?? Knob error";
             }
+        } else {
+            throw "what side button is this?? Knob error";
         }
-        else { throw "what side button is this?? Knob error"; }
-
     };
     knob.addListener(listener);
 
@@ -1272,12 +1625,6 @@ function new_knob(elem, side) {
 }
 
 //END OF CLAUDIO THING
-
-
-
-
-
-
 
 //START OF LEONE ENV THING
 var canvas = document.getElementById("myCanvas");
@@ -1383,20 +1730,20 @@ function draw() {
     // Attack
     ctx.beginPath();
     ctx.moveTo(60, 250);
-    ctx.lineTo(env.attack / total * 300 + current, 50);
-    current += env.attack / total * 300;
+    ctx.lineTo((env.attack / total) * 300 + current, 50);
+    current += (env.attack / total) * 300;
 
     // Decay
-    ctx.lineTo(env.decay / total * 300 + current, 250 - env.sustain * 200);
-    current += env.decay / total * 300;
+    ctx.lineTo((env.decay / total) * 300 + current, 250 - env.sustain * 200);
+    current += (env.decay / total) * 300;
 
     // Sustain
     ctx.lineTo(current + 100, 250 - env.sustain * 200);
     current += 100;
 
     // Release
-    ctx.lineTo(env.release / total * 300 + current, 250);
-    current += env.release / total * 300;
+    ctx.lineTo((env.release / total) * 300 + current, 250);
+    current += (env.release / total) * 300;
 
     // stroke
     ctx.lineWidth = 6;
@@ -1412,26 +1759,31 @@ function draw() {
         ctx.lineTo(current, 25);
         ctx.lineWidth = 4;
         ctx.strokeStyle = "purple";
-        if (env.release / total > .1) {
+        if (env.release / total > 0.1) {
             // horizontal release
             ctx.moveTo(current - 10, 30);
-            current -= env.release / total * 300;
+            current -= (env.release / total) * 300;
             ctx.lineTo(current + 10, 30);
             ctx.stroke();
             ctx.closePath();
             // arrowhead
-            drawArrowhead(current + env.release / total * 300 - 4, 30, Math.PI / 2, 9);
-            if (env.release / total > .16) {
+            drawArrowhead(
+                current + (env.release / total) * 300 - 4,
+                30,
+                Math.PI / 2,
+                9
+            );
+            if (env.release / total > 0.16) {
                 // R
                 ctx.font = "italic 20px serif";
                 ctx.fillStyle = "purple";
                 ctx.textAlign = "center";
-                ctx.fillText("R", current + env.release / total * 150 - 2, 26);
+                ctx.fillText("R", current + (env.release / total) * 150 - 2, 26);
             }
         } else {
             ctx.stroke();
             ctx.closePath();
-            current -= env.release / total * 300;
+            current -= (env.release / total) * 300;
         }
     }
 
@@ -1493,26 +1845,31 @@ function draw() {
         ctx.lineTo(current, 25);
         ctx.lineWidth = 4;
         ctx.strokeStyle = "#f60";
-        if (env.decay / total > .1) {
+        if (env.decay / total > 0.1) {
             // horizontal decay
             ctx.moveTo(current - 10, 30);
-            current -= env.decay / total * 300;
+            current -= (env.decay / total) * 300;
             ctx.lineTo(current + 10, 30);
             ctx.stroke();
             ctx.closePath();
             // arrowhead
-            drawArrowhead(current + env.decay / total * 300 - 4, 30, Math.PI / 2, 9);
-            if (env.decay / total > .16) {
+            drawArrowhead(
+                current + (env.decay / total) * 300 - 4,
+                30,
+                Math.PI / 2,
+                9
+            );
+            if (env.decay / total > 0.16) {
                 // D
                 ctx.font = "italic 20px serif";
                 ctx.fillStyle = "#f60";
                 ctx.textAlign = "center";
-                ctx.fillText("D", current + env.decay / total * 150 - 2, 26);
+                ctx.fillText("D", current + (env.decay / total) * 150 - 2, 26);
             }
         } else {
             ctx.stroke();
             ctx.closePath();
-            current -= env.decay / total * 300;
+            current -= (env.decay / total) * 300;
         }
     }
 
@@ -1524,26 +1881,31 @@ function draw() {
         ctx.lineTo(current, 25);
         ctx.lineWidth = 4;
         ctx.strokeStyle = "green";
-        if (env.attack / total > .1) {
+        if (env.attack / total > 0.1) {
             // horizontal attack
             ctx.moveTo(current - 10, 30);
-            current -= env.attack / total * 300;
+            current -= (env.attack / total) * 300;
             ctx.lineTo(current + 10, 30);
             ctx.stroke();
             ctx.closePath();
             // arrowhead
-            drawArrowhead(current + env.attack / total * 300 - 4, 30, Math.PI / 2, 9);
-            if (env.attack / total > .16) {
+            drawArrowhead(
+                current + (env.attack / total) * 300 - 4,
+                30,
+                Math.PI / 2,
+                9
+            );
+            if (env.attack / total > 0.16) {
                 // A
                 ctx.font = "italic 20px serif";
                 ctx.fillStyle = "green";
                 ctx.textAlign = "center";
-                ctx.fillText("A", current + env.attack / total * 150 - 2, 26);
+                ctx.fillText("A", current + (env.attack / total) * 150 - 2, 26);
             }
         } else {
             ctx.stroke();
             ctx.closePath();
-            current -= env.attack / total * 300;
+            current -= (env.attack / total) * 300;
         }
     }
 
@@ -1568,12 +1930,11 @@ function createEnvelope() {
         type: "custom",
         frequency: "C4",
         volume: -8
-    })
+    });
     //.connect(envelope)
     //.start();
 }
 createEnvelope();
-
 
 $("#attackRange").on("change", function () {
     current_oscillator.osc.envelope.attack = Number($("#attackRange").val());
@@ -1581,7 +1942,6 @@ $("#attackRange").on("change", function () {
     createEnvelope();
     draw();
     $("#attack").html($(this).val());
-
 });
 
 $("#decayRange").on("change", function () {
@@ -1636,39 +1996,106 @@ $("#releaseRange").on("mousemove", function () {
     $("#release").html($(this).val());
 });
 
-document.getElementById("attackRange").style.backgroundColor = 'green';
-document.getElementById("decayRange").style.backgroundColor = '#FF6600';
-document.getElementById("sustainRange").style.backgroundColor = 'blue';
-document.getElementById("releaseRange").style.backgroundColor = 'purple';
+document.getElementById("attackRange").style.backgroundColor = "green";
+document.getElementById("decayRange").style.backgroundColor = "#FF6600";
+document.getElementById("sustainRange").style.backgroundColor = "blue";
+document.getElementById("releaseRange").style.backgroundColor = "purple";
 
-/*
-          case "phaserIn":
-          break;
-          case "reverbIn":
-          break;
-          case "chorusIn":
-          break;
-          case "bitcrusherIn":
-          break;
-          case "chebIn":
-          break;
-          case "wahIn":
-          break;
-          case "pannerIn":
-          break;
-          case "pingpongdelayIn":
-          break;
-          case "pitchshiftIn":
-          break;
-          case "auto-filterIn":
-          break;
-          case "vibratoIn":
-          break;
-          case "duosynthIn":
-          break;
-          case "fatsynthIn":
-          break;
-          case "noiseIn":
-          break;
-          case "freqenvIn":
-          break;*/
+
+function selectCF(el) {
+    console.log("This is Cantus Firmus");
+    el.classList.toggle("option-selected");
+    if (cf_flag == true) {
+        cf_flag = false;
+    }
+    else if (cf_flag == false) {
+        cf_flag = true;
+    }
+}
+
+var switch_count = 1;
+
+function selectSW(el) {
+    console.log("This is the Switch");
+    switch (switch_count) {
+        case 0:
+            chant_ar = ["C3", "F3", "E3", "G3", "D3", "E3", "D3", "C3"];
+            switch_count = switch_count + 1;
+            break;
+        case 1:
+            chant_ar = ["G3", "E3", "G3", "A3", "B3", "C4", "A3", "G3"];
+            switch_count = switch_count + 1;
+            break
+        case 2:
+            chant_ar = ["D3", "A3", "G3", "F#3", "E3", "F#3", "E3", "D3"];
+            switch_count = switch_count + 1;
+            break;
+        case 3:
+            chant_ar = ["G3", "D4", "C4", "A3", "G3", "B3", "A3", "G3"];
+            switch_count = switch_count + 1;
+            break
+        case 4:
+            chant_ar = ["C#3", "D#3", "F3", "A#3", "F#3", "F3", "D#3", "C#3"];
+            switch_count = switch_count + 1;
+            break;
+        case 5:
+            chant_ar = ["G3", "F#3", "E3", "A3", "G3", "B3", "A3", "G3"]
+            switch_count = 0;
+            break
+        default:
+            chant_ar = ["C3", "F3", "E3", "G3", "D3", "E3", "D3", "C3"];
+    }
+    if (species_flag == 1) {
+        counter_ar = counterpoint_1(chant_ar);
+    }
+    else if (species_flag == 2) {
+        counter_ar = counterpoint_2(chant_ar);
+    }
+    else if (species_flag == 3) {
+        counter_ar = counterpoint_3(chant_ar);
+    }
+    else if (species_flag == 4) {
+        counter_ar = counterpoint_4(chant_ar);
+    }
+    //think
+}
+
+function select1(el) {
+    console.log("This is the first");
+    el.classList.toggle("option-selected");
+    counter_ar = counterpoint_1(chant_ar);
+    document.getElementById("k2").classList.remove("option-selected");
+    document.getElementById("k3").classList.remove("option-selected");
+    document.getElementById("k4").classList.remove("option-selected");
+
+    species_flag = 1;
+
+}
+function select2(el) {
+    console.log("This is the second");
+    el.classList.toggle("option-selected");
+    counter_ar = counterpoint_2(chant_ar);
+    document.getElementById("k1").classList.remove("option-selected");
+    document.getElementById("k3").classList.remove("option-selected");
+    document.getElementById("k4").classList.remove("option-selected");
+    species_flag = 2;
+}
+function select3(el) {
+    console.log("This is the third");
+    el.classList.toggle("option-selected");
+    counter_ar = counterpoint_3(chant_ar);
+    document.getElementById("k1").classList.remove("option-selected");
+    document.getElementById("k2").classList.remove("option-selected");
+    document.getElementById("k4").classList.remove("option-selected");
+    species_flag = 3;
+}
+function select4(el) {
+    counter_ar = counterpoint_4(chant_ar);
+    console.log("This is the fourth");
+    el.classList.toggle("option-selected");
+
+    document.getElementById("k1").classList.remove("option-selected");
+    document.getElementById("k2").classList.remove("option-selected");
+    document.getElementById("k3").classList.remove("option-selected");
+    species_flag = 4;
+}

@@ -3,12 +3,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 
-
 </head>
 <body>
     <div id="bounds">
-
-
         <div id="osc_container" class="big_container">
             <div class="key_container ver">
                 <div id="sin" class="keys key_osc">
@@ -161,17 +158,42 @@
                         <input id=releaseRange type=range min="0" max="3" step="0.05" value="1.5">
                     </div>
                 </div>
+                <div class="key_container hor">
+                    <div id="cantus_firmus_key" class="keys_cantus" onclick="selectCF(this)">
+                        <button id="cantus_firmus" class="button_cantus" style="vertical-align:middle"></button>
+                    </div>
+
+                    <div id="switch" class="keys_switch" onclick="selectSW(this)">
+                        <button class="button button_osc switch" style="vertical-align:middle"></button>
+                    </div>
+
+
+                    <div id="k1" class="option key1" onclick="select1(this)">
+                        <button class="button static_button first_button" style="vertical-align:middle"></button>
+                    </div>
+                    <div id="k2" class="option key2" onclick="select2(this)">
+                        <button class="button static_button second_button" style="vertical-align:middle"></button>
+                    </div>
+                    <div id="k3" class="option key3" onclick="select3(this)">
+                        <button class="button static_button third_button" style="vertical-align:middle"></button>
+                    </div>
+                    <div id="k4" class="option key4" onclick="select4(this)">
+                        <button class="button static_button fourth_button" style="vertical-align:middle"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main_out_node">
+                <div id="main_out" class="connection"></div>
             </div>
         </div>
-        <div id="main_out_node">
-            <div id="main_out" class="connection"></div>
-        </div>
-    </div>
 
-    <script scr="./pureknob.js" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+        <script scr="./pureknob.js" type="module"></script>
+        <script scr="./counterpoint.js" type="module"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/saebekassebil/teoria/teoria.js"></script>
+        <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>

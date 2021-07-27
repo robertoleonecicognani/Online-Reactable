@@ -53,7 +53,7 @@
 #adsr_cont {
     right: 0px;
     top: 0px;
-    height: 300px;
+    height: 550px;
     width: 310px;
 }
 
@@ -333,8 +333,8 @@
 
 #main_out_node {
     position: absolute;
-    left: 690px;
-    top: 345px;
+    left: 550px;
+    top: 360px;
 }
 
 #main_out {
@@ -383,4 +383,116 @@ input[type="range"]::-webkit-slider-thumb {
     opacity: 0.5;
     width: 10px;
     height: 26px;
+}
+
+.keys_cantus {
+    border-radius: 5px;
+    border: 2px solid black;
+    display: inline-block;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+    border-color: blue;
+    position: absolute;
+    left: 30px;
+    top: 320px;
+}
+
+.button_cantus {
+    background: white;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    transition: all 0.5s;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 20px;
+    height: 150px;
+    background-image: url("https://i.postimg.cc/z3ZdRW9R/cantusfirmuslogo.jpg");
+}
+
+.keys_switch {
+    border-radius: 5px;
+    border: 2px solid black;
+    display: inline-block;
+    cursor: pointer;
+    background-color: green;
+    border-color: green;
+    position: absolute;
+    left: 210px;
+    top: 360px;
+    height: 70px;
+}
+
+.switch {
+    border-radius: 25px;
+    background-image: url("https://i.postimg.cc/1XKTVFnt/sw-itchbutton.jpg");
+}
+
+.static_button {
+    width: 50px;
+    height: 50px;
+}
+
+.first_button {
+    background-image: url("https://i.postimg.cc/SQH2MqK4/firsticon.png");
+}
+
+.second_button {
+    background-image: url("https://i.postimg.cc/Yq19LWVN/secondicon.png");
+}
+
+.third_button {
+    background-image: url("https://i.postimg.cc/DZdjb5rk/3icon.png");
+}
+
+
+.fourth_button {
+    background-image: url("https://i.postimg.cc/4yx5HG4V/4icon.png");
+}
+
+.non_active {
+    border-color: black;
+    background-color: black;
+}
+
+.option {
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: black;
+    border-color: black;
+    display: inline-block;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.option-selected {
+    background-color: red;
+    border-color: red;
+}
+
+.key1 {
+    position: absolute;
+    left: 10px;
+    top: 490px;
+}
+
+.key2 {
+    position: absolute;
+    left: 90px;
+    top: 490px;
+}
+
+.key3 {
+    position: absolute;
+    left: 170px;
+    top: 490px;
+}
+
+.key4 {
+    position: absolute;
+    left: 250px;
+    top: 490px;
 }
