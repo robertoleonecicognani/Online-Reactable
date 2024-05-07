@@ -91,15 +91,15 @@ All the effects are taken from Tone.js library and the documentation is availabl
 Our Online Reactable offers an option to alter the envelope parameters of the respective synths, via a visual interface where the user can control and visualize the ADSR model on the fly. We used this Codepen as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
 
-## Connecting lines
+## Connections
 
-Every button is provided with connection nodes. Oscillators have one for output while filters and effects have one for input and one for output. 
-Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear. 
-To break a connection instead, it is enough to click again on the output node from which the line was created and it will vanish.
-To obtain sound in output, the user must create an eventual connection between the oscillator buttons and the white dot located at the very center of the workspace.
-
+Every button is provided with connection nodes. Oscillators have one for output while filters and effects have one for input and one for output.<br>
+Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear.<br>
+To break a connection instead, it is enough to click again on the output node from which the line was created and it will vanish.<br>
+To obtain sound in output, the user must create an eventual connection between the oscillator buttons and the white dot located at the very center of the workspace.<br>
 
 ## Making music
+
 If the user wishes to hear a melody with the unaltered sound from the oscillator he must connect the corresponding button directly to the output node, otherwise they can connect it to an effect and have this last one be connected to the general output. It is possible to have multiple in effects in cascade.
 The user has control over several factors that include oscillator types, filters, and effects, and can combine and arrange them to obtain musical outputs with different sonic characteristics. The Web React table serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
 
