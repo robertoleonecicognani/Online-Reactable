@@ -94,9 +94,9 @@ Our Online Reactable offers an option to alter the envelope parameters of the re
 ## Connections
 
 Every button is provided with connection nodes. Oscillators have one for output while filters and effects have one for input and one for output.<br>
-Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear.<br>
-To break a connection instead, it is enough to click again on the output node from which the line was created and it will vanish.<br>
-To obtain sound in output, the user must create an eventual connection between the oscillator buttons and the white dot located at the very center of the workspace.<br>
+Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear. This procedure must always start with a oscillator as a source of sound but has no limits in terms of number of filters and effects that can be chained one to the other, and thus applied to the composition.<br>
+To break a connection it is enough to click again on the output node from which the line was created and it will vanish.<br>
+Finally, to obtain sound in output, the user must create an eventual connection between a oscillator button and the white node located at the very center of the workspace.<br>
 
 ## Making music
 
