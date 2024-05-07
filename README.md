@@ -101,10 +101,8 @@ However, to obtain sound in output, the user must always create an eventual conn
 This interface implementation of the Online Reactable serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
 
 <img align="left" src="readMeImages/connections.png"  width="200%" >
-<br><br>
 
-
-#### How is Audio Created?
+## How is Audio Created?
 
 We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
 We also needed a wrapper class for Tone.js to bypass elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)<br>
