@@ -23,7 +23,8 @@ The buttons can be subdivided in three categories: <br>
 
 Finally, there is an envelope visualizer to modify the ADSR model of the compositions.<br>
 
-## Oscilator Buttons
+## Oscilators
+
 The oscillators initiates the melody with the timber of a selected synthesiser. The possible choices are the most common and used waves: 
 
 - **sin** <br>
