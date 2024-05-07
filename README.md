@@ -129,7 +129,7 @@ Conversely, when a line is destroyed or the button is destroyed, every audio con
 Tone.js ‘disconnect’ method is used.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
 ## Knobs 
-We used an open source library for knob implementation. This library allowed us to create knobs that can change their values on the fly with an user input. We partially altered the knob library for them to move when the associated buttons are moved and also some added properties such as knob id's for defining which knob correspond to which effect.[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
+We used an open source library for a knob implementation that allows to change their values on the fly with an user input. We partially altered the library so that the knobs move accordingly to the associated buttons. We also added a few properties, such as IDs for defining which knob correspond to which effect.[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/knob.png?raw=true)<br>
 <br>
@@ -149,8 +149,8 @@ contains the styling of the application
 ## Dependencies
 
 - [**React**]: Structure of the web page and of the View.
-- [**Tone.js**]: A web audio framework for creating interactive music in the web intuitively version: 14.8.26.
-- [**jQuery**]: Library that facilitates communication between html and JS and is optimal for event handling and animation.
+- [**Tone.js**]: A web audio framework for the intuitive creation of interactive music in the web, version: 14.8.26.
+- [**jQuery**]: Library that simplifies communication between html and JS and is optimal for event handling and animation.
 
 ©
 
