@@ -21,11 +21,16 @@ The buttons can be subdivided in three categories: <br>
 - **Filters:** they alter the frequency composition of the sound<br>
 - **Effects:** they module sound and add reverb, tremolo, vibrato etc.<br>
 
-Finally, there is an envelope visualizer to modify the ADSR model of the compositions<br>
+Finally, there is an envelope visualizer to modify the ADSR model of the compositions.<br>
 
 ## Oscilator Buttons
-The oscillators initiates the melody with the timber of a chosen synthesiser, It is possible to choose between the most common and used waves and filters so: 
-- **sin, square, saw** and **triangle waves** <br> <br>Under the effects there is also **Duo synth** that can be used similarly. 
+The oscillators initiates the melody with the timber of a selected synthesiser. The possible choices are the most common and used waves: 
+- **sin** <br>
+- **square** <br>
+- **saw** <br>
+- **triangle** <br>
+
+Under the effects there is also **Duo synth** that can be used similarly. 
 
 Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.
 The left knob increases the harmonics of the wave, and for Duo Synth it increases the vibrato speed.
