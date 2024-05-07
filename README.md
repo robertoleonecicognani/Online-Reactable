@@ -100,7 +100,7 @@ It is possible to link multiple filters and effects in cascade and thus apply th
 However, to obtain sound in output, the user must always create an eventual connection between a oscillator button and the white node located at the very center of the workspace.<br>
 This interface implementation of the Online Reactable serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
 
-![alt_text](<img align="left" src="readMeImages/connections.png"  width="200%" >)
+![alt_text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connections.png)
 
 ## How is Audio Created?
 
