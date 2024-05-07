@@ -61,7 +61,7 @@ An exception among the effects to keep in mind is the **Duo Synth**, which behav
 
 All the effects are taken from Tone.js library and the documentation is available online.<br>
 
-![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/effects.png?raw=true)
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/effectIcons.png)
 <br>
 
 
