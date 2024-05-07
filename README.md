@@ -25,6 +25,7 @@ Finally, there is an envelope visualizer to modify the ADSR model of the composi
 
 ## Oscilator Buttons
 The oscillators initiates the melody with the timber of a selected synthesiser. The possible choices are the most common and used waves: 
+
 - **sin** <br>
 - **square** <br>
 - **saw** <br>
@@ -39,7 +40,11 @@ The right knob regulates the volume of the sound.<br>
 ## Filters
 
 Filters lets us alter the frequency composition of the sound. There are 3 filter definitions in the project:<br>
--**low, high** and **band pass filters.**<br>
+
+-**low pass filters**<br>
+-**high pass filters**<br>
+-**band pass filters**<br>
+
 The left knob controls the Q parameter. Normally this only controls the When this parameter is very high very fun stuff happens! The Right knob controls the cut-off frequency and in the case of band pass, it controls the central frequency of the filter.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/filters.png?raw=true)
