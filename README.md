@@ -82,7 +82,7 @@ Flanger: Delay time<br>
 Tremolo: Rate of the effect<br>
 Fatsynth: Spread of each oscillator<br>
 
-#### &nbsp;&nbsp;Some interesting example usages of effects:<br><br>
+#### Some interesting example usages of effects:<br><br>
 Pitchshift: The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
 Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
