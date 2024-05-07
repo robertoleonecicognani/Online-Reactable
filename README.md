@@ -97,8 +97,7 @@ Every button is provided with connection nodes. Oscillators have one for output 
 Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear.<br>
 To instead break a connection, it is enough to click again on the output node from which the line was created and it will vanish.<br>
 It is possible to link multiple filters and effects in cascade and thus apply them to the composition.<br>
-However, to obtain sound in output, the user must always create an eventual connection between a oscillator button and the white node located at the very center of the workspace.<br>
-This interface implementation of the Online Reactable serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
+However, to obtain sound in output, the user must always create an eventual connection between a oscillator button, as a source of audio, and the white node located at the very center of the workspace.<br>
 
 ![alt_text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connections.png)
 
@@ -112,12 +111,11 @@ Finally, we wrote the custom functions for the connections.<br>
 
 
 ## Audio Context Handling
-Every time a connection is made between two buttons, the ‘model’ array keeps track of what is connected to what.
+Every time a connection is made between two buttons, the ‘model’ array keeps track of what is linked to what.
 The model is checked constantly if an oscillator is present.
-If yes, the oscillator and its type is defined and the melody is initiated.
-After each connection, the function identify the button id’s and the audio context objects relating to those id’s. 
-Connects those id’s until it reaches to the output node.
-Tone.js ‘connect’ method is used to handle the audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
+If yes, the oscillator and its type is defined and the melody is initiated.<br>
+After each connection, until the output central node is reached, a function identifies the buttons IDs and the related audio context objects.
+Tone.js ‘connect’ method is used to handle these audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)
 <br>
 Conversely, when a line is destroyed or the button is destroyed, every audio context object associated are detected and are disconnected.
