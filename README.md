@@ -104,7 +104,7 @@ This interface implementation of the Online Reactable serves foremost as a tool 
 <br><br>
 
 
-## How is Audio Created?
+#### How is Audio Created?
 
 We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
 We also needed a wrapper class for Tone.js to bypass elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)<br>
