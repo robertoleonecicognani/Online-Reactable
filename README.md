@@ -9,7 +9,7 @@ You can find a web-page version of the project and other resources here: <br>
 ### [Our Project!](https://onlinereactable.surge.sh "s")
 ### [Our Presentation!](https://docs.google.com/presentation/d/1iQVu1o2SmSgm0hFCPjxOuq55HptJmsgteYhDYnO7mWo/edit?usp=sharing "s")
 ### [Demo Video!](https://youtu.be/J2Nzjh6Q07c "s")
-### [Codepen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
+### [CodePen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
 
 ## How do you use it? 
 The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. If buttons are clicked, they are moved into the interface and then they can be dragged by the user.
