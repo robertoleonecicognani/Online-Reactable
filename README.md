@@ -65,7 +65,7 @@ All the effects are taken from Tone.js library and the documentation is availabl
 <br>
 
 
-#### &nbsp;&nbsp;Every effects' left knob:<br> <br>
+#### Every effects' left knob:<br> <br>
 
 Distortion: Distortion level<br>
 Phaser: Frequency of the panning effect<br>
