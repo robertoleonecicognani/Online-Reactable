@@ -21,7 +21,7 @@ The buttons can be subdivided in three categories: <br>
 - **Filters:** they alter the frequency composition of the sound<br>
 - **Effects:** they module sound and add reverb, tremolo, vibrato etc.<br>
 
-Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.
+Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.<br>
 The left knob increases the harmonics of the wave.
 The right knob regulates the volume of the sound.<br>
 
