@@ -131,7 +131,8 @@ Conversely, when a line is destroyed or the button is destroyed, every audio con
 Tone.js ‘disconnect’ method is used.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
 ## Knobs 
-We used an open source library for a knob implementation that allows to change their values on the fly with an user input. We partially altered the library so that the knobs move accordingly to the associated buttons. We also added a few properties, such as IDs for defining which knob correspond to which effect.[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
+We used an open source library for a knob implementation that allows to change their values on the fly with an user input.<br> 
+We partially altered the library so that the knobs move accordingly to the associated buttons. We also added a few properties, such as IDs for defining which knob correspond to which effect.[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/)
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/knob.png?raw=true)<br>
 <br>
