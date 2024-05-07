@@ -17,9 +17,10 @@ The Online Reactable is made of a dark blue workspace interface surrounded by bl
 ![Screenshot](readMeImages/appInterface.png)
 
 The buttons can be subdivided in three categories: <br>
--Oscillators, they produce basic waveforms and and initiates the melody;<br>
--Filters, alter the frequency composition of the sound;<br>
--Effects, module sound and add reverb, tremolo, vibrato etc.;<br>
+- Oscillators, they produce basic waveforms and and initiates the melody;<br>
+- Filters, alter the frequency composition of the sound;<br>
+- Effects, module sound and add reverb, tremolo, vibrato etc.;<br>
+
 Finally, there is an envelope visualizer to modify the ADSR model of the compositions<br>
 
 ## Oscilator Buttons
