@@ -1,9 +1,7 @@
 # Online Reactable
 ## What is an Online Reactable?
 <img align="left" src="readMeImages/MAE logo.png"  width="10%" style="margin-left:5px; margin-bottom:10px">
-The Online Reactable is a version on web page of a reactable, i.e., a real-time electronical musical instrument that intuitively lets the player to create and combine sound waves, filters and effects.<br><br>
-
-Music is composed by choosing buttons and putting them on an electronic table whose surface is a touch screen to change the effect parameters. Objects of oscillators and effects are selected and moved to generate a sound pattern, emulating the behavior of an analogue synthesizer. Parameters can be changed to obtain different kind of results. <br>
+The Online Reactable is a version on web page of a reactable, i.e., a real-time intuitive electronical musical instrument, made up of a touch screen surface, which is an interface between the user and the music production, and buttons representing oscillators, filters and effects. By shifting and chaining buttons on the surface, a sound pattern is composed, emulating the behavior of an analogue synthesizer. Parameters can be changed to obtain different kind of results. <br>
 
 The project has been developed for the course of Advanced Coding Tools and Methodologies for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano. <br><br>
 You can find a web-page version of the project and other resources here: <br>
