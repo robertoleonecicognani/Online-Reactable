@@ -12,15 +12,15 @@ You can find a web-page version of the project and other resources here: <br>
 ### [Codepen!](https://codepen.io/umutus/pen/wvdrMdP?editors=1111 "s")
 
 ## How do you use it? 
-The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. It is possible to include these buttons into the interface by clicking on them and connecting them to create interesting combinations.
+The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. If buttons are clicked, they are moved into the interface and then they can be dragged by the user.
 
 ![Screenshot](readMeImages/appInterface.png)
 
 The buttons can be subdivided in three categories: <br>
--Oscillators, produces basic waveforms and and initiates the melody<br>
--Filters, which can alter the frequency composition of the sound<br>
--Effects, that can module sound and add reverb, tremolo, vibrato etc. <br>
--Envelope visulaizer <br>
+-Oscillators, they produce basic waveforms and and initiates the melody;<br>
+-Filters, alter the frequency composition of the sound;<br>
+-Effects, module sound and add reverb, tremolo, vibrato etc.;<br>
+Finally, there is an envelope visualizer to modify the ADSR model of the compositions<br>
 
 ## Oscilator Buttons
 The oscillators initiates the melody with the timber of a chosen synthesiser, It is possible to choose between the most common and used waves and filters so: 
