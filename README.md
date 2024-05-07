@@ -14,7 +14,7 @@ You can find a web-page version of the project and other resources here: <br>
 ## How do you use it? 
 The Online Reactable is made of a dark blue workspace interface surrounded by black columns that work as menus of oscillators, effects and filters. It is possible to include these buttons into the interface by clicking on them and connecting them to create interesting combinations.
 
-![Screenshot](readMeImages/interface.png)
+![Screenshot](readMeImages/appInterface.png)
 
 The buttons can be subdivided in three categories: <br>
 -Oscillators, produces basic waveforms and and initiates the melody<br>
