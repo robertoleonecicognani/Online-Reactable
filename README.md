@@ -91,23 +91,21 @@ All the effects are taken from Tone.js library and the documentation is availabl
 Our Online Reactable offers an option to alter the envelope parameters of the respective synths, via a visual interface where the user can control and visualize the ADSR model on the fly. We used this Codepen as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
 
-## Connections
+## Connections and music making
 
 Every button is provided with connection nodes. Oscillators have one for output while filters and effects have one for input and one for output.<br>
-Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear. This procedure must always start with a oscillator as a source of sound but has no limits in terms of number of filters and effects that can be chained one to the other, and thus applied to the composition.<br>
-To break a connection it is enough to click again on the output node from which the line was created and it will vanish.<br>
-Finally, to obtain sound in output, the user must create an eventual connection between a oscillator button and the white node located at the very center of the workspace.<br>
-
-## Making music
-
-If the user wishes to hear a melody with the unaltered sound from the oscillator he must connect the corresponding button directly to the output node, otherwise they can connect it to an effect and have this last one be connected to the general output. It is possible to have multiple in effects in cascade.
-The user has control over several factors that include oscillator types, filters, and effects, and can combine and arrange them to obtain musical outputs with different sonic characteristics. The Web React table serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
+Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear.<br>
+To instead break a connection, it is enough to click again on the output node from which the line was created and it will vanish.<br>
+It is possible to link multiple filters and effects in cascade and thus apply them to the composition.<br>
+However, to obtain sound in output, the user must always create an eventual connection between a oscillator button and the white node located at the very center of the workspace.<br>
+This interface implementation of the Online Reactable serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
 
 <img align="left" src="readMeImages/connections.png"  width="200%" >
 <br>
 
 
 ## How is Audio Created?
+
 We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
 We also needed a wrapper class for Tone.js for bypassing elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
 The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for creating/drawing the knobs, for changing the parameters of each button, partially customized by us. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0)
