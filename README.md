@@ -101,19 +101,19 @@ However, to obtain sound in output, the user must always create an eventual conn
 This interface implementation of the Online Reactable serves foremost as a tool for experimenting with musical timbre, textures and overall interesting effects using a simple and intuitive environment.<br>
 
 <img align="left" src="readMeImages/connections.png"  width="200%" >
-<br>
+<br><br>
 
 
 ## How is Audio Created?
 
 We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
-We also needed a wrapper class for Tone.js for bypassing elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)
-The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for creating/drawing the knobs, for changing the parameters of each button, partially customized by us. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0)
-A helper envelope function that lets us change envelope on the fly.[ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
-Custom functions that we wrote that connects everything
+We also needed a wrapper class for Tone.js to bypass elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)<br>
+The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for drawing the knobs to change the parameters of each button. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0). We partially customized it.<br>
+We used a helper envelope function that lets us change envelope on the fly.[ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
+Finally, we wrote the custom functions for the connections.<br>
 
 
-## Audio Context Handling, Create lines
+## Audio Context Handling
 Every time a connection is made between two buttons, the ‘model’ array keeps track of what is connected to what.
 The model is checked constantly if an oscillator is present.
 If yes, the oscillator and its type is defined and the melody is initiated.
@@ -122,9 +122,6 @@ Connects those id’s until it reaches to the output node.
 Tone.js ‘connect’ method is used to handle the audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)
 <br>
-
-## Audio Context Handling, Destroy lines
-
 Conversely, when a line is destroyed or the button is destroyed, every audio context object associated are detected and are disconnected.
 Tone.js ‘disconnect’ method is used.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
@@ -149,7 +146,7 @@ contains the styling of the application
 
 ## Dependencies
 
-- [**React**]: Structure of the web page and of the View.
+- [**React**]: Structure of the web page and of the view.
 - [**Tone.js**]: A web audio framework for the intuitive creation of interactive music in the web, version: 14.8.26.
 - [**jQuery**]: Library that simplifies communication between html and JS and is optimal for event handling and animation.
 
