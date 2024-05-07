@@ -46,43 +46,53 @@ Filters let the user alter the frequency composition of the sound. In this proje
 -**high pass filters**<br>
 -**band pass filters**<br>
 
-The left knob controls the Q parameter. The right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
+The left knob controls the Q parameter.<br>
+The right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/filters.png?raw=true)
 
 ## Effects 
 
-Effects enable the user to alter the produced sound. All of the left knobs control a parameter for the specific effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, that corresponds to how much of the output is the response after the application of the effect with respect to the pure input. All the effects are taken from Tone.js library and the documentation is available online.<br>
+Effects enable the user to alter the produced sound.<br>
+All of the left knobs control a parameter for the specific effect that we thought made the most interesting changes.<br>
+Almost all of the right knobs control the wetness of the signal, that corresponds to how much of the output is the response after the application of the effect with respect to the pure input.<br>
+
+An exception among the effects to keep in mind is the **Duo Synth**, which behaves similarly to an oscillator. Its left knob regulates the vibrato speed.
+
+All the effects are taken from Tone.js library and the documentation is available online.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/effects.png?raw=true)
 <br>
 
+
 #### &nbsp;&nbsp;Every effects' left knob:<br> <br>
+
 Distortion: Distortion level<br>
 Phaser: Frequency of the panning effect<br>
-Vibrato: Speed of the vibrato<br>
+Vibrato: Vibrato speed<br>
 Reverb: The decay time<br>
 Bitcrusher: Bit number of downsampler<br>
 Chebyshev: Chebyshev waveshaper order number<br>
-Autowah: The basefrequency of the bandpass filter<br>
+Autowah: The base frequency of the bandpass filter<br>
 Autopanner: Frequency of panning effect<br>
 PingpongDelay: Feedback amount<br>
 Pitchshift: Pitch interval<br>
-Autofilter: Frequency of the autofilter<br>
+Autofilter: Autofilter frequency<br>
 Flanger: Delay time<br>
 Tremolo: Rate of the effect<br>
-Fatsynth: Spread of each oscillator <br>
-
+Fatsynth: Spread of each oscillator<br>
 
 #### &nbsp;&nbsp;Some interesting example usages of effects:<br><br>
-Pitchshift: The user can set the wetness to 50% and set the interval which creates the sensation of chords.<br>
+Pitchshift: The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
 Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
 ## Envelope Regulator
-The interface offers an option to alter the envelope parameters of the respective synths, via a visual interface in which the user can control and visualize the ADSR parameters on the fly. We used this pen from the internet as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
+
+Our Online Reactable offers an option to alter the envelope parameters of the respective synths, via a visual interface where the user can control and visualize the ADSR model on the fly. We used this Codepen as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
 
 ## Movement and connecting lines
+
 To obtain sound in output the user must create an eventual connection between the oscillator buttons and the output node, located at the very center of the workspace.
 Every button is provided with connection nodes from which a line can be drawn. Oscillator nodes have one node for output while filters and effects have one input and one output. Creating a connection between buttons is easy: one must click on the output node of the first button and subsequently click the input node of the button to which the connection should arrive. To break the connection, it is enough to click again on the output node from which the line was created and the connection will vanish.
 
