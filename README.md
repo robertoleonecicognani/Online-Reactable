@@ -91,10 +91,12 @@ All the effects are taken from Tone.js library and the documentation is availabl
 Our Online Reactable offers an option to alter the envelope parameters of the respective synths, via a visual interface where the user can control and visualize the ADSR model on the fly. We used this Codepen as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
 
-## Movement and connecting lines
+## Connecting lines
 
-To obtain sound in output the user must create an eventual connection between the oscillator buttons and the output node, located at the very center of the workspace.
-Every button is provided with connection nodes from which a line can be drawn. Oscillator nodes have one node for output while filters and effects have one input and one output. Creating a connection between buttons is easy: one must click on the output node of the first button and subsequently click the input node of the button to which the connection should arrive. To break the connection, it is enough to click again on the output node from which the line was created and the connection will vanish.
+Every button is provided with connection nodes. Oscillators have one for output while filters and effects have one for input and one for output. 
+Creating a connection between buttons is done by clicking on the output node of the first button and subsequently on the input one of the second, then a linking line will appear. 
+To break a connection instead, it is enough to click again on the output node from which the line was created and it will vanish.
+To obtain sound in output, the user must create an eventual connection between the oscillator buttons and the white dot located at the very center of the workspace.
 
 
 ## Making music
