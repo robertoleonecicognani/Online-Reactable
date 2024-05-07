@@ -40,19 +40,19 @@ The right knob regulates the volume of the sound.<br>
 
 ## Filters
 
-Filters lets us alter the frequency composition of the sound. There are 3 filter definitions in the project:<br>
+Filters let the user alter the frequency composition of the sound. In this project there are:<br>
 
 -**low pass filters**<br>
 -**high pass filters**<br>
 -**band pass filters**<br>
 
-The left knob controls the Q parameter. The Right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
+The left knob controls the Q parameter. The right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/filters.png?raw=true)
 
 ## Effects 
 
-Effect buttons enable the user to change the produced sound. All of the left knobs control a parameter for the effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, meaning how much of the output is the filtered response and how much it is the pure input. All the effects are taken from Tone.js library and the documentation is available online.<br>
+Effects enable the user to alter the produced sound. All of the left knobs control a parameter for the specific effect that we thought made the most interesting changes. Almost all of the right knobs control the wetness of the signal, that corresponds to how much of the output is the response after the application of the effect with respect to the pure input. All the effects are taken from Tone.js library and the documentation is available online.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/effects.png?raw=true)
 <br>
