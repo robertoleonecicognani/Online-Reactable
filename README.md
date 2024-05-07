@@ -57,7 +57,7 @@ Effects enable the user to alter the produced sound.<br>
 All of the left knobs control a parameter for the specific effect that we thought made the most interesting changes.<br>
 Almost all of the right knobs control the wetness of the signal, that corresponds to how much of the output is the response after the application of the effect with respect to the pure input.<br>
 
-An exception among the effects to keep in mind is the **Duo Synth**, which behaves similarly to an oscillator. Its left knob regulates the vibrato speed.
+An exception among the effects to keep in mind is the **DuoSynth**, which behaves similarly to an oscillator. Its left knob regulates the vibrato speed.
 
 All the effects are taken from Tone.js library and the documentation is available online.<br>
 
@@ -67,20 +67,20 @@ All the effects are taken from Tone.js library and the documentation is availabl
 
 #### Every effects' left knob:<br> <br>
 
-Distortion: Distortion level<br>
-Phaser: Frequency of the panning effect<br>
-Vibrato: Vibrato speed<br>
-Reverb: The decay time<br>
-Bitcrusher: Bit number of downsampler<br>
-Chebyshev: Chebyshev waveshaper order number<br>
-Autowah: The base frequency of the bandpass filter<br>
-Autopanner: Frequency of panning effect<br>
-PingpongDelay: Feedback amount<br>
-Pitchshift: Pitch interval<br>
-Autofilter: Autofilter frequency<br>
-Flanger: Delay time<br>
-Tremolo: Rate of the effect<br>
-Fatsynth: Spread of each oscillator<br>
+**Distortion:** Distortion level<br>
+**Phaser:** Frequency of the panning effect<br>
+**Vibrato:** Vibrato speed<br>
+**Reverb:** The decay time<br>
+**Bitcrusher:** Bit number of downsampler<br>
+**Chebyshev:** Chebyshev waveshaper order number<br>
+**Autowah:** The base frequency of the bandpass filter<br>
+**Autopanner:** Frequency of panning effect<br>
+**PingPongDelay:** Feedback amount<br>
+**Pitchshift:** Pitch interval<br>
+**Autofilter:** Autofilter frequency<br>
+**Flanger:** Delay time<br>
+**Tremolo:** Rate of the effect<br>
+**Fatsynth:** Spread of each oscillator<br>
 
 #### Some interesting example usages of effects:<br>
 Pitchshift: The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
