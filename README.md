@@ -21,12 +21,6 @@ The buttons can be subdivided in three categories: <br>
 - **Filters:** they alter the frequency composition of the sound<br>
 - **Effects:** they module sound and add reverb, tremolo, vibrato etc.<br>
 
-Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.<br>
-The left knob increases the harmonics of the wave.
-The right knob regulates the volume of the sound.<br>
-
-![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/oscillators.png?raw=true)
-
 Finally, there is an envelope visualizer to modify the ADSR model of the compositions.<br>
 
 ## Oscilator Buttons
@@ -35,6 +29,12 @@ The oscillators initiates the melody with the timber of a selected synthesiser. 
 - **square** <br>
 - **saw** <br>
 - **triangle** <br>
+
+Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.<br>
+The left knob increases the harmonics of the wave.
+The right knob regulates the volume of the sound.<br>
+
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/oscillators.png?raw=true)
 
 ## Filters
 
