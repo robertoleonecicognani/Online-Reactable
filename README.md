@@ -46,7 +46,7 @@ Filters lets us alter the frequency composition of the sound. There are 3 filter
 -**high pass filters**<br>
 -**band pass filters**<br>
 
-The left knob controls the Q parameter. Normally this only controls the When this parameter is very high very fun stuff happens! The Right knob controls the cut-off frequency and in the case of band pass, it controls the central frequency of the filter.<br>
+The left knob controls the Q parameter. The Right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/filters.png?raw=true)
 
