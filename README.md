@@ -83,8 +83,8 @@ All the effects are taken from Tone.js library and the documentation is availabl
 **Fatsynth:** Spread of each oscillator<br>
 
 #### Some interesting example usages of effects:<br>
-Pitchshift: The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
-Phaser: Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
+**Pitchshift:** The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
+**Phaser:** Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
 
 ## Envelope Regulator
 
