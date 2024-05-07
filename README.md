@@ -33,7 +33,7 @@ The oscillators initiates the melody with the timber of a selected synthesiser. 
 - **triangle** <br>
 
 Every button is equiped with two knobs that let the user have control over the corresponding effect or sound.<br>
-The left knob increases the harmonics of the wave.
+In the case of the oscillators, the left knob increases the harmonics of the wave.<br>
 The right knob regulates the volume of the sound.<br>
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/oscillators.png?raw=true)
