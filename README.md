@@ -112,14 +112,13 @@ Finally, we wrote the custom functions for the connections.<br>
 
 ## Audio Context Handling
 Every time a connection is made between two buttons, the ‘model’ array keeps track of what is linked to what.
-The model is checked constantly if an oscillator is present.
+The model is checked constantly to see if an oscillator is present.
 If yes, the oscillator and its type is defined and the melody is initiated.<br>
-After each connection, until the output central node is reached, a function identifies the buttons IDs and the related audio context objects.
-Tone.js ‘connect’ method is used to handle these audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br><br>
+After each connection, until the output node is reached, the function identify the buttons ID and the related audio context objects.
+Tone.js ‘connect’ method is used to handle these audio context connections.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#connect)<br>
+Conversely, when a line is destroyed, or when a button is erased from the table and brought back to the menu via its intuitive 'close' command, every audio context object associated is detected and are disconnected.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)<br><br>
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/connection%202.png?raw=true)
 <br>
-Conversely, when a line is destroyed or the button is destroyed, every audio context object associated are detected and are disconnected.
-Tone.js ‘disconnect’ method is used.[ * ](https://tonejs.github.io/docs/14.7.77/ToneAudioNode#disconnect)
 
 ## Knobs 
 We used an open source library for a knob implementation that allows to change their values on the fly with an user input.<br> 
