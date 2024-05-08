@@ -20,14 +20,14 @@ The new buttons are placed underneath the Envelope Regulator.<br> It is importan
 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/buttonsCantusFirmus.png?raw=true)
 
-The biggest one with a logo on it (“Cantus Firmus”) has the purpose of reproducing a Cantus Firmus.<br> Clicking on this button it toggles an active state and turns from blue to red.<br> When this happens, all the newly created oscillators, when connected to the output node, start playing a fixed melody from the Online Reactable's set. If the button is clicked again it will stop play playing, reset to a non active state and turn blue as before.<br>
+The biggest one with a logo on it (“Cantus Firmus”) has the purpose of reproducing a **Cantus Firmus**.<br> Clicking on this button it toggles an active state and turns from blue to red.<br> When this happens, all the newly created oscillators, when connected to the output node, start playing a fixed melody from the Online Reactable's set. If the button is clicked again it will stop play playing, reset to a non active state and turn blue as before.<br>
 
-The switch button is the arrow in a green square, next to the previous one. Clicking on it, the current “Cantus Firmus” is changed with another one in the set.<br>
+The **switch** button is the arrow in a green square, next to the previous one. Clicking on it, the current “Cantus Firmus” is changed with another one in the set.<br>
 
-The user can also choose the species of the counterpoint which he wants to associate the Cantus Firmus with by clicking the corresponding button among the numered four ones. Intiutively, button 1 is corresponds to the first species, button 2 to the second, and so on.<br> 
+The user can also choose the species of the **counterpoint** which he wants to associate the Cantus Firmus with by clicking the corresponding button among the numered four ones. Intiutively, button 1 is corresponds to the first species, button 2 to the second, and so on.<br> 
 Again, when one of these four objects is clicked, it gets active, becomes red and starts playing the counterpoint.<br> As they are clicked another time they instead turn inactive and black and they stop playing. Only one of the four can be used at the time. This means that if a button is clicked after another one, the previous stops working and the produced species of counterpoint changed.<br>
 
-The technique of backtracking was essential in our counterpoint implementation, making it possible to go back and fix choices that would produce a dead end for the counterpoint. If the algorithm detects a dead-end, it goes back to a note that has another possibility and chooses randomly from that collection. This way it eventually finds a path that works.<br> 
+The technique of **backtracking** was essential in our counterpoint implementation, making it possible to go back and fix choices that would produce a dead end for the counterpoint. If the algorithm detects a dead-end, it goes back to a note that has another possibility and chooses randomly from that collection. This way it eventually finds a path that works.<br> 
 
 ## Files
 _Web Reactable_ is composed of:
