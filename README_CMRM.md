@@ -18,8 +18,7 @@ The new buttons are placed underneath the Envelope Regulator. It is important to
 - a switch button
 - buttons enumerated from 1 to 4
 
-![Screenshot (593)](https://user-images.githubusercontent.com/82660558/127183126-6eb072e9-84c1-4e9d-91cc-8226d4739923.png)
-
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/buttonsCantusFirmus.png?raw=true)
 
 The first one is the biggest and has a logo on it (“Cantus Firmus”) and its purpose is to reproduce a Cantus Firmus. Clicking on this button it toggles an active state and turns from blue to red. When this happens, all the newly created oscillators, when connected to the output node, start playing a fixed melody from the Online Reactable's set. If the button is clicked again it will stop play playing, reset to a non active state and turn blue as before.<br>
 
