@@ -13,7 +13,7 @@ For these purposes, new functionalities and buttons have been added. Our goal wa
 ## How do you use it? 
 ![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/CantusFirmusInterface.png?raw=true)
 
-The new buttons are placed underneath the Envelope Regulator. It is important to underline that, with respect to most of the other objects of the Online Reactable, these ones are fixed and do not need to move, be linked between them or to the output node to apply their effect. Like the Envelope Regulator, their function is combined with the sound and its alteration, produced by sin waves, filters and effects.<br>The buttons are: 
+The new buttons are placed underneath the Envelope Regulator.<br> It is important to underline that, with respect to most of the other objects of the Online Reactable, these ones are fixed and do not need to move, be linked between them or to the output node to apply their effect. Like the Envelope Regulator, their function is combined with the sound and its alteration, produced by sin waves, filters and effects.<br>The buttons are: 
 - a **Cantus Firmus** button, 
 - a **switch** button
 - buttons enumerated from **1** to **4**
