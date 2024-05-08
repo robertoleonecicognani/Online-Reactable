@@ -105,7 +105,7 @@ However, to obtain sound in output, the user must always create an eventual conn
 
 We used Tone.js, for effects, timing the melody, and Audio Context handling.[ * ](https://tonejs.github.io/)
 We also needed a wrapper class for Tone.js to bypass elements on the fly.[ * ](https://github.com/Tonejs/Tone.js/issues/187#issuecomment-705409761)<br>
-The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for drawing the knobs (which we partially customized) to change the parameters of each button. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0).<br>
+The project also uses Pure-knob library[ * ](https://www.cssscript.com/canvas-javascript-knob-dial-component/) for drawing the knobs to change the parameters of each button. This library is under Apache v2 license.[ * ](http://www.apache.org/licenses/LICENSE-2.0). We partially customized it.<br>
 We used a helper envelope function that lets us change envelope on the fly.[ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
 Finally, we wrote the custom functions for the connections.<br>
 
