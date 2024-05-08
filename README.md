@@ -80,7 +80,7 @@ All the effects are taken from Tone.js library and the documentation is availabl
 **Autofilter:** Autofilter frequency<br>
 **Flanger:** Delay time<br>
 **Tremolo:** Rate of the effect<br>
-**DuoSynth** Vibrato speed<br>
+**DuoSynth:** Vibrato speed<br>
 **Fatsynth:** Spread of each oscillator<br>
 
 #### Some interesting example usages of effects:<br>
