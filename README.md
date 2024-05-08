@@ -89,7 +89,7 @@ All the effects are taken from Tone.js library and the documentation is availabl
 ## Envelope Regulator
 
 Our Online Reactable offers an option to alter the envelope parameters of the respective synths, via a visual interface where the user can control and visualize the ADSR model on the fly. We used this Codepen as the source code: [ * ](https://codepen.io/ScarpMetal/pen/LyxMGx)<br>
-![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/adsr.png?raw=true)
+![alt text](https://github.com/robertoleonecicognani/Online-Reactable/blob/main/readMeImages/ADSR.png?raw=true)
 
 ## Connections and music making
 
