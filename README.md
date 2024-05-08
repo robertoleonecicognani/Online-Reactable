@@ -42,9 +42,9 @@ The right knob regulates the volume of the sound.<br>
 
 Filters let the user alter the frequency composition of the sound. In this project there are:<br>
 
--**low pass filters**<br>
--**high pass filters**<br>
--**band pass filters**<br>
+- **low pass filters**<br>
+- **high pass filters**<br>
+- **band pass filters**<br>
 
 The left knob controls the Q parameter.<br>
 The right knob controls the cut-off frequency in the case of low and high pass filter and the central frequency in the band pass.<br>
