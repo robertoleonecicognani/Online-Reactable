@@ -2,7 +2,7 @@
 <img align="left" src="readMeImages/MAE logo.png"  width="10%" style="margin-left:5px; margin-bottom:10px">
 The Online Reactable is the recreation of a reactable on a web page that allows the user to create & combine sound waves, filters and effects in real time in an intuitive way.<br><br>
 
-The regular mode of Reactable plays a melody founded by us and has been used for ACTaM final project. However when the user sets the Countus Firmus button, all the newly created oscillators starts playing a Countus firmus melody. The Online Reactable has a set of Cantus Firmus(CF) among which the user can choose that can be played. The user can also choose to this create counterpoints in real-time that fits with the corresponding CF. The user can select the species of these counterpoints and the Online Reactable will generate the new counterpoint with the specified specie. The technique of backtracking was essential in our implementation, making it possible to go back and fix choices that would produce a dead end for the counterpoint. If the algorithm detects a dead-end, it goes back to a note that has another possibility and chooses randomly from that collection. This way it eventually finds a path that works. 
+The regular mode of Reactable plays a melody founded by us and has been used for ACTaM final project. However when the user sets the Cantus Firmus button, all the newly created oscillators starts playing a Cantus firmus melody. The Online Reactable has a set of Cantus Firmus(CF) among which the user can choose that can be played. The user can also choose to this create counterpoints in real-time that fits with the corresponding CF. The user can select the species of these counterpoints and the Online Reactable will generate the new counterpoint with the specified specie. The technique of backtracking was essential in our implementation, making it possible to go back and fix choices that would produce a dead end for the counterpoint. If the algorithm detects a dead-end, it goes back to a note that has another possibility and chooses randomly from that collection. This way it eventually finds a path that works. 
 
 Our goal was to combine the ancient art of Counterpoint and the modern Reactable with modern effects, to produce a new experience for the user. The project has been developed for the course of Computer Music Representations and Models for the Music and Acoustic Engineering Master’s degree of the Politecnico di Milano.
 
@@ -23,11 +23,12 @@ It is important to underline that, with respect to most of the other objects of 
 ![Screenshot (593)](https://user-images.githubusercontent.com/82660558/127183126-6eb072e9-84c1-4e9d-91cc-8226d4739923.png)
 
 
-The first one is the biggest and has a logo on it (“Cantus Firmus”) and its purpose is to reproduce a Cantus Firmus. Clicking on this button, a fixed melody from the Online Reactable's set starts playing. When this happens, the button toggles to an active state and turns from blue to red.<br>
+The first one is the biggest and has a logo on it (“Cantus Firmus”) and its purpose is to reproduce a Cantus Firmus. Clicking on this button, a fixed melody from the Online Reactable's set starts playing. When this happens, the button toggles to an active state and turns from blue to red. If clicked again it will stop play playing, reset to a non active state and turn blue as before.<br>
+
 The switch button is the arrow in a green square, next to the previous one. Clicking on it, the current “Cantus Firmus” is changed with another one in the set.<br>
 
-The user can also choose the species of the counterpoint which he wants to associate the Cantus Firmus with by clicking the corresponding button. Intiutively, button 1 is corresponds to the first species, button 2 to the second, button 3 to the third and button 4 to the fourth.<br> 
-When a button is clicked it gets active and starts playing the counterpoint. Active buttons become red, as they are clicked again on they instead turn black and stop playing. Only one button can be active at the time, which means that if a button is clicked after another one, the previous stops working and the species of counterpoint produces changed. 
+The user can also choose the species of the counterpoint which he wants to associate the Cantus Firmus with by clicking the corresponding button among the numered four ones. Intiutively, button 1 is corresponds to the first species, button 2 to the second, and so on.<br> 
+Again, when one of these four objects is clicked, it gets active, becomes red and starts playing the counterpoint. As they are clicked another time they instead turn inactive and black and they stop playing. Only one of the four can be used at the time. This means that if a button is clicked after another one, the previous stops working and the produced species of counterpoint changed.
 
 ## Files
 _Web Reactable_ is composed of:
