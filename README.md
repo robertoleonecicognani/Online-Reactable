@@ -57,7 +57,7 @@ Effects enable the user to alter the produced sound.<br>
 All of the left knobs control a parameter for the specific effect that we thought made the most interesting changes.<br>
 Almost all of the right knobs control the wetness of the signal, that corresponds to how much of the output is the response after the application of the effect with respect to the pure input.<br>
 
-Two exceptions to keep in mind are the **DuoSynth** and the **Noise** which behave similarly to oscillators (indeed, their buttons have only one knob), but still are regarded as effects for the particularity of their timber. The left knob of the **DuoSynth** regulates the vibrato speed.
+The exceptions to keep in mind are the **DuoSynth**, the **FatSynth** and the **Noise** which behave similarly to oscillators (indeed, their buttons have only one knob), but still are regarded as effects.
 
 All the effects are taken from Tone.js library and the documentation is available online.<br>
 
@@ -80,6 +80,7 @@ All the effects are taken from Tone.js library and the documentation is availabl
 **Autofilter:** Autofilter frequency<br>
 **Flanger:** Delay time<br>
 **Tremolo:** Rate of the effect<br>
+**DuoSynth** Vibrato speed<br>
 **Fatsynth:** Spread of each oscillator<br>
 
 #### Some interesting example usages of effects:<br>
