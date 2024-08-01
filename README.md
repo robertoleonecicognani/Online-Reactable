@@ -85,7 +85,7 @@ All the effects are taken from Tone.js library and the documentation is availabl
 
 #### Some interesting example usages of effects:<br>
 **Pitchshift:** The user can set the wetness to 50% and set the interval, which creates the sensation of chords.<br>
-**Phaser:** Setting the frequency of the phaser so high that the streo effect becomes a bit percussive and electronic.
+**Phaser:** Setting the frequency of the phaser so high that the stereo effect becomes a bit percussive and electronic.
 
 ## Envelope Regulator
 
